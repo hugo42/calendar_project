@@ -1,7 +1,12 @@
 package calendar.business;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class Picture extends Feature {
 
+	@Column
 	private String source;
 	
 	public Picture(){

@@ -1,12 +1,34 @@
 package calendar.business;
 
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
+@Entity
 public class Purchase {
 	
+	@Id
+	@Column
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "guest")
+    private Guest guest;
+	
+	@OneToOne
+	@JoinColumn(name = "day")
 	private Day day;
+	
+	@OneToOne
+	@JoinColumn(name = "feature")
+	private Feature feature;
 	
 	public Purchase(){
 		
@@ -20,12 +42,12 @@ public class Purchase {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public Guest getGuest() {
+		return guest;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setGuest(Guest guest) {
+		this.guest = guest;
 	}
 
 	public Day getDay() {

@@ -1,16 +1,39 @@
 package calendar.business;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class User {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
+
+@Entity
+public class Guest {
 	
+	@Id
+	@Column
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String name;
-	private String email;
-	private String password;
-	private ArrayList<Purchase> purchases;
 	
-	public User(){
+	@Column
+	private String name;
+	
+	@Column
+	private String email;
+	
+	@Column
+	private String password;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="guest")
+    List<Purchase> purchases = new ArrayList<Purchase>();
+	
+	public Guest(){
 		
 	}
 
@@ -46,7 +69,7 @@ public class User {
 		this.password = password;
 	}
 
-	public ArrayList<Purchase> getPurchases() {
+	public List<Purchase> getPurchases() {
 		return purchases;
 	}
 
