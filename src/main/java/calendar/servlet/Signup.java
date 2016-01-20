@@ -1,32 +1,23 @@
 package calendar.servlet;
 
 import java.io.IOException;
-import java.util.Calendar;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
-import calendar.business.Guest;
-
 /**
- * Servlet implementation class Signin
+ * Servlet implementation class Signup
  */
-@WebServlet(name = "signin", urlPatterns = { "/signin" })
-public class Signin extends HttpServlet {
+@WebServlet("/signup")
+public class Signup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Signin() {
+    public Signup() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,7 +26,8 @@ public class Signin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Compte enregistré !");
+		// TODO Auto-generated method stub
+		response.getWriter().append("Vous êtes connecté !");
 	}
 
 	/**

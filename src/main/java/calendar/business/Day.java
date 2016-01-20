@@ -1,6 +1,9 @@
 package calendar.business;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,5 +54,10 @@ public class Day {
 
 	public void setPurchase(Purchase purchase) {
 		this.purchase = purchase;
+	}
+	
+	public String getTextDate(){
+		
+		return new SimpleDateFormat("EEEE d MMMM yyyy", Locale.FRENCH).format(this.dayDate);
 	}
 }
