@@ -51,7 +51,7 @@ public class Signin extends HttpServlet {
 			
 //			Création des Day
 			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(date);
+//			calendar.setTime(date);
 			calendar.set(Calendar.DAY_OF_MONTH, 1); 
 			int myMonth=calendar.get(Calendar.MONTH);
 
