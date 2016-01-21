@@ -1,4 +1,5 @@
 <%@ tag description="Overall Page template using bootstrap style" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ attribute name="title" fragment="true" %>
 <%@ attribute name="h1Title" fragment="true" %>
 <!DOCTYPE html>
@@ -17,8 +18,12 @@
 		      <a class="navbar-brand" href="#">CalendarProject</a>
 		    </div>
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <ul class="nav navbar-nav navbar-right">
-		      </ul>
+				<% if (session.getAttribute("guest") != null) { %>
+				  <ul class="nav navbar-nav navbar-right">
+			      	<li><a href="#">${guest.name}</a></li>
+			      	<li><button class="btn btn-danger navbar-btn">Deconnexion</button>
+			      </ul>
+				<% } %>
 		    </div>
 		  </div>
 		</nav>
