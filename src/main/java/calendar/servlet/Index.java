@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Main
+ * Servlet implementation class Index
  */
-@WebServlet(name = "main", urlPatterns = { "/main" })
-public class Main extends HttpServlet {
+@WebServlet("/index")
+public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Main() {
+    public Index() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,6 +26,7 @@ public class Main extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
 	}
 

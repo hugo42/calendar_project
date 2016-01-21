@@ -5,13 +5,14 @@
   Signup = (function() {
     function Signup() {
       this.submit = __bind(this.submit, this);
+      this.checkPasswordConfirm = __bind(this.checkPasswordConfirm, this);
       this.checkEmail = __bind(this.checkEmail, this);
-      this.init = __bind(this.init, this);
+      this.bind = __bind(this.bind, this);
       this.w = $('form#form-signup');
-      this.init();
+      this.bind();
     }
 
-    Signup.prototype.init = function() {
+    Signup.prototype.bind = function() {
       $("#email", this.w).on('input', (function(_this) {
         return function(e) {
           if ($(e.currentTarget).val().length > 4) {
@@ -22,29 +23,63 @@
       return this.w.submit(this.submit);
     };
 
-    Signup.prototype.checkEmail = function() {
-      var check;
-      check = false;
+    Signup.prototype.checkEmail = function(submit) {
+      if (submit == null) {
+        submit = false;
+      }
+      $('#errors', this.w).text("");
       return $.ajax({
-        url: "signup/check-email",
-        success: (function(_this) {
-          return function(data) {
-            check = true;
-            return $('#errors', _this.w).text(data);
-          };
-        })(this),
-        error: (function(_this) {
-          return function() {
-            return $('#errors', _this.w).text("Cette adresse mail est déjà utilisée...");
-          };
-        })(this)
+        url: "check-email",
+        method: "POST",
+        data: {
+          "email": $('#email', this.w).val()
+        },
+        statusCode: {
+          200: (function(_this) {
+            return function(data) {
+              return $('#errors', _this.w).text("Cette adresse mail est déjà utilisée...");
+            };
+          })(this)
+        }
       });
     };
 
+    Signup.prototype.checkPasswordConfirm = function() {
+      var res;
+      $('#errors', this.w).text("");
+      res = true;
+      if ($('#password', this.w).val() !== $('#passwordConfirm', this.w).val()) {
+        $('#errors', this.w).text("La confirmation du mot de passe n'est pas correcte...");
+        res = false;
+      }
+      return res;
+    };
+
     Signup.prototype.submit = function(e) {
-      e.preventDefault();
-      if (this.checkEmail()) {
-        return this.w.submit();
+      if (this.checkPasswordConfirm()) {
+        $('#errors', this.w).text("");
+        return $.ajax({
+          url: "check-email",
+          method: "POST",
+          data: {
+            "email": $('#email', this.w).val()
+          },
+          statusCode: {
+            403: (function(_this) {
+              return function(data) {
+                return $(_this).submit();
+              };
+            })(this),
+            200: (function(_this) {
+              return function(data) {
+                e.preventDefault();
+                return $('#errors', _this.w).text("Cette adresse mail est déjà utilisée...");
+              };
+            })(this)
+          }
+        });
+      } else {
+        return e.preventDefault();
       }
     };
 

@@ -13,8 +13,11 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.util.comparator.InstanceComparator;
 
 import calendar.business.Guest;
+import calendar.dao.EntityManager;
+import calendar.dao.RepositoryManager;
 
 /**
  * Servlet implementation class Signin
@@ -35,15 +38,38 @@ public class Signin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Vous êtes connecté !");
+
+		this.getServletContext().getRequestDispatcher( "/signin.jsp" ).forward( request, response );
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		
+		if( request.getParameter("email") != null &&
+				request.getParameter("password") != null
+			){
+			
+			RepositoryManager rm = new RepositoryManager();
+			
+			String email = request.getParameter("email");
+			Guest guest = rm.getGuestManager().findOneByEmail(email);
+			if(guest != null){
+				if(guest.getPassword().trim().equals(request.getParameter("password").trim())){
+					response.setStatus(HttpServletResponse.SC_OK);
+//					TODO : set user in session
+				}
+			}
+		}
+		
+		if(response.getStatus() == HttpServletResponse.SC_BAD_REQUEST){
+			response.sendRedirect("signin");
+		}else{
+			response.sendRedirect("main");
+		}
 	}
 
 }

@@ -11,13 +11,19 @@
 	<jsp:body>
 		<div class="row">
 			<div class="col-md-10">
-				<form id="form-signup" action="signup">
+				<form id="form-signup" method="post" action="signup">
 					<div class="form-group">
-						<p id="errors"></p>
+						<p id="errors">
+							<%-- <%
+								if(request.getParameter("errors") != null){
+									out.println(request.getParameter("errors"));
+								}
+							%> --%>
+						</p>
 					</div>
 				  <div class="form-group">
-					<label for="email">Pseudo</label>
-				    <input type="text" class="form-control" id="text" placeholder="Enter your pseudo..." required>
+					<label for="name">Pseudo</label>
+				    <input type="text" class="form-control" id="name" name="name" placeholder="Pseudo..." required>
 				  </div>
 				  <div class="form-group">
 				    <label for="email">Email address</label>
@@ -25,11 +31,11 @@
 				  </div>
 				  <div class="form-group">
 				    <label for="password">Password</label>
-				    <input type="password" class="form-control" id="password" placeholder="Password" required>
+				    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
 				  </div>
 				  <div class="form-group">
 				    <label for="password">Confirm password</label>
-				    <input type="password" class="form-control" id="passwordConfirm" placeholder="Password confirmation" required>
+				    <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="Password confirmation" required>
 				  </div>
 				  <button type="submit" class="btn btn-primary">Créer compte</button>
 				</form>			

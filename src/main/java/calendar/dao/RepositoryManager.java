@@ -10,13 +10,13 @@ public class RepositoryManager {
 		return new GuestDao();
 	}
 	
-	public RepositoryManager getRepository(String repClass) throws Exception{
+//	public RepositoryManager getRepository(String repClass) throws Exception{
 		
-		RepositoryManager rm = null;
-		switch (repClass) {
-			case "Guest":
-				rm = new GuestDao();
-				break;
+//		RepositoryManager rm = null;
+//		switch (repClass) {
+//			case "Guest":
+//				rm = new GuestDao();
+//				break;
 //			case "Day":
 //				rm = new DayDao();
 //				break;
@@ -29,13 +29,13 @@ public class RepositoryManager {
 //			case "Picture":
 //				rm = new PictureDao();
 //				break;
-			default:
-				break;
-		}
-		
-		if(rm == null){
-			throw new Exception("Ripository "+repClass+" does not Exists");
-		}
-		return rm;
-	}
+//			default:
+//				break;
+//		}
+//		
+//		if(rm == null){
+//			throw new Exception("Ripository "+repClass+" does not Exists");
+//		}
+//		return rm;
+//	}
 }

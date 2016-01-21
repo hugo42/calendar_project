@@ -8,7 +8,7 @@ import org.hibernate.criterion.Restrictions;
 
 import calendar.business.Guest;
 
-public class GuestDao extends RepositoryManager {
+public class GuestDao {
 	
 	private Session session = null;
 	
