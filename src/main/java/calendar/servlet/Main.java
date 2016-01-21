@@ -32,6 +32,7 @@ public class Main extends HttpServlet {
 		if(session.getAttribute("guest") == null){
 			response.sendRedirect("signin");
 		}else{
+			request.setAttribute("testok", "coucou");
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/views/main.jsp" ).forward( request, response );
 		}
 	}

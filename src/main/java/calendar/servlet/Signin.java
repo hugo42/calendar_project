@@ -55,6 +55,7 @@ public class Signin extends HttpServlet {
 					response.setStatus(HttpServletResponse.SC_OK);
 					HttpSession session = request.getSession(true);
 					session.setAttribute("guest", guest);
+					session.setMaxInactiveInterval(10*60);
 				}
 			}
 		}

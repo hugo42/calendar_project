@@ -48,8 +48,6 @@ public class Signup extends HttpServlet {
 						request.getParameter("password").trim().equals(request.getParameter("passwordConfirm").trim())
 			){
 			
-//			TODO : tester les password
-			
 			EntityManager em = new EntityManager();
 			
 			Guest guest = new Guest();
@@ -64,6 +62,7 @@ public class Signup extends HttpServlet {
 			 */
 			HttpSession session = request.getSession(true);
 			session.setAttribute("guest", guest);
+			session.setMaxInactiveInterval(10*60);
 			
 			response.setStatus(HttpServletResponse.SC_OK);
 			response.sendRedirect("main");
