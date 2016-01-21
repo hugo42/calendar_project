@@ -7,6 +7,7 @@
 	<head>
 		<title><jsp:invoke fragment="title"/></title>
 		<link rel='stylesheet' href='webjars/bootstrap/3.2.0/css/bootstrap.min.css'>
+		<link rel='stylesheet' href='resources/css/style.css'>
 		<script type="text/javascript" src="webjars/jquery/2.2.0/jquery.min.js"></script>
 		<script type="text/javascript" src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="resources/js/forms.js"></script>

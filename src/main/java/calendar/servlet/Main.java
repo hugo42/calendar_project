@@ -1,12 +1,17 @@
 package calendar.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import calendar.business.Day;
+import calendar.dao.RepositoryManager;
 
 /**
  * Servlet implementation class Main
@@ -32,7 +37,9 @@ public class Main extends HttpServlet {
 		if(session.getAttribute("guest") == null){
 			response.sendRedirect("signin");
 		}else{
-			request.setAttribute("testok", "coucou");
+			RepositoryManager rm = new RepositoryManager();
+			List<Day> days= rm.getDayManager().findAll();			
+			request.setAttribute("days", days);
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/views/main.jsp" ).forward( request, response );
 		}
 	}

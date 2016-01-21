@@ -10,6 +10,10 @@ public class RepositoryManager {
 		return new GuestDao();
 	}
 	
+	public DayDao getDayManager(){
+		return new DayDao();
+	}
+	
 //	public RepositoryManager getRepository(String repClass) throws Exception{
 		
 //		RepositoryManager rm = null;
