@@ -12,7 +12,7 @@ class Signup
 
 		@w.submit @submit 
 
-	checkEmail: (submit = false)=>
+	checkEmail: ()=>
 
 		$('#errors', @w).text ""
 		$.ajax
@@ -34,20 +34,7 @@ class Signup
 
 
 	submit: (e)=>
-		if @checkPasswordConfirm()
-			$('#errors', @w).text ""
-			$.ajax
-				url: "check-email"
-				method: "POST"
-				data:
-					"email" : $('#email', @w).val()
-				statusCode:
-					403: (data)=>
-						$(this).submit()
-					200: (data)=>
-						e.preventDefault()
-						$('#errors', @w).text "Cette adresse mail est déjà utilisée..."
-		else
+		if !@checkPasswordConfirm()
 			e.preventDefault()
 
 class Signin

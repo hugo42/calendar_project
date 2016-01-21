@@ -50,10 +50,10 @@ public class Signin extends HttpServlet {
 			Guest guest = rm.getGuestManager().findOneByEmail(email);
 			if(guest != null){
 				if(guest.getPassword().trim().equals(request.getParameter("password").trim())){
-					response.setStatus(HttpServletResponse.SC_OK);
 					HttpSession session = request.getSession(true);
 					session.setAttribute("guest", guest);
 					session.setMaxInactiveInterval(10*60);
+					response.setStatus(HttpServletResponse.SC_OK);
 				}else{
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 					request.setAttribute("errors", "Mot de passe incorrect...");
@@ -68,10 +68,10 @@ public class Signin extends HttpServlet {
 		}
 		
 		
-		if(response.getStatus() == HttpServletResponse.SC_BAD_REQUEST){
-			doGet(request, response);
-		}else{
+		if(response.getStatus() == HttpServletResponse.SC_OK){
 			response.sendRedirect("main");
+		}else{
+			doGet(request, response);
 		}
 	}
 
