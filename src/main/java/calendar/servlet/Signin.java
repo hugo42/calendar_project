@@ -35,7 +35,7 @@ public class Signin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Compte enregistré !");
+		response.getWriter().append("Vous êtes connecté !");
 	}
 
 	/**

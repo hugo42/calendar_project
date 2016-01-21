@@ -11,14 +11,17 @@
 	<jsp:body>
 		<div class="row">
 			<div class="col-md-10">
-				<form>
+				<form id="form-signup" action="signup">
+					<div class="form-group">
+						<p id="errors"></p>
+					</div>
 				  <div class="form-group">
 					<label for="email">Pseudo</label>
 				    <input type="text" class="form-control" id="text" placeholder="Enter your pseudo..." required>
 				  </div>
 				  <div class="form-group">
 				    <label for="email">Email address</label>
-				    <input type="email" class="form-control" id="email" placeholder="email@user.com" required>
+				    <input type="email" class="form-control" id="email" name="email" placeholder="email@user.com" required>
 				  </div>
 				  <div class="form-group">
 				    <label for="password">Password</label>

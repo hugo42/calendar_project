@@ -11,7 +11,7 @@
 	<jsp:body>
 		<div class="row">
 			<div class="col-md-10">
-				<form action="login">
+				<form action="signin">
 				  <div class="form-group">
 				    <label for="email">Email address</label>
 				    <input type="email" class="form-control" id="email" placeholder="email@user.com" required>

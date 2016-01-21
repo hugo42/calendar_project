@@ -6,32 +6,36 @@ public class RepositoryManager {
 		
 	}
 	
-	public Object getRepository(String repClass) throws Exception{
+	public GuestDao getGuestManager(){
+		return new GuestDao();
+	}
+	
+	public RepositoryManager getRepository(String repClass) throws Exception{
 		
-		Object object = null;
+		RepositoryManager rm = null;
 		switch (repClass) {
 			case "Guest":
-				new GuestDao();
+				rm = new GuestDao();
 				break;
-			case "Day":
-				new DayDao();
-				break;
-			case "Purchase":
-				new PurchaseDao();
-				break;
-			case "Diction":
-				new DictionDao();
-				break;
-			case "Picture":
-				new PictureDao();
-				break;
+//			case "Day":
+//				rm = new DayDao();
+//				break;
+//			case "Purchase":
+//				rm = new PurchaseDao();
+//				break;
+//			case "Diction":
+//				rm = new DictionDao();
+//				break;
+//			case "Picture":
+//				rm = new PictureDao();
+//				break;
 			default:
 				break;
 		}
 		
-		if(object == null){
+		if(rm == null){
 			throw new Exception("Ripository "+repClass+" does not Exists");
 		}
-		return object;
+		return rm;
 	}
 }
