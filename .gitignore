@@ -4,3 +4,4 @@ target/*
 /bin/
 .classpath
 .settings/
+/src/main/resources/hibernate.cfg.xml

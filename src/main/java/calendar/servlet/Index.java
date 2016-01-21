@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Index
  */
-@WebServlet("/index")
+@WebServlet(name = "index", urlPatterns = { "/index"}, loadOnStartup = 0 )
 public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,9 +26,9 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 //		session.setAttribute("stuff", "Allez n° "+session.getAttribute("guest_id")); %>
-		this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
+		this.getServletContext().getRequestDispatcher( "//WEB-INF/views/index.jsp" ).forward( request, response );
 	}
 
 	/**
