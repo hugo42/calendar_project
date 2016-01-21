@@ -55,7 +55,7 @@
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					  <ul class="nav navbar-nav">
 				      	<li><a href="terms-of-sales">CGV</a></li>
-				      	<li><a href="legale-notice">Mentions</a></li>
+				      	<li><a href="legal-notice">Mentions</a></li>
 				      </ul>
 			    </div>
 			  </div>
