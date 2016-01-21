@@ -33,7 +33,7 @@
 				    <label for="password">Confirm password</label>
 				    <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="Password confirmation" required>
 				  </div>
-				  <button type="button" id="validate" class="btn btn-primary">Créer compte</button>
+				  <button type="submit" id="validate" class="btn btn-primary">Créer compte</button>
 				</form>			
 			</div>
 		</div>

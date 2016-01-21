@@ -23,10 +23,7 @@
       return this.w.submit(this.submit);
     };
 
-    Signup.prototype.checkEmail = function(submit) {
-      if (submit == null) {
-        submit = false;
-      }
+    Signup.prototype.checkEmail = function() {
       $('#errors', this.w).text("");
       return $.ajax({
         url: "check-email",
@@ -56,29 +53,7 @@
     };
 
     Signup.prototype.submit = function(e) {
-      if (this.checkPasswordConfirm()) {
-        $('#errors', this.w).text("");
-        return $.ajax({
-          url: "check-email",
-          method: "POST",
-          data: {
-            "email": $('#email', this.w).val()
-          },
-          statusCode: {
-            403: (function(_this) {
-              return function(data) {
-                return $(_this).submit();
-              };
-            })(this),
-            200: (function(_this) {
-              return function(data) {
-                e.preventDefault();
-                return $('#errors', _this.w).text("Cette adresse mail est déjà utilisée...");
-              };
-            })(this)
-          }
-        });
-      } else {
+      if (!this.checkPasswordConfirm()) {
         return e.preventDefault();
       }
     };

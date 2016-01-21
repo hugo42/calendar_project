@@ -16,7 +16,7 @@ public class DayDao {
 	
 	public DayDao(){
 		
-		SessionFactory sf = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+		SessionFactory sf = HibernateFactory.getFactory();
 		this.session = sf.getCurrentSession();
 		this.session.beginTransaction();
 	}

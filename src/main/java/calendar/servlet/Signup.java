@@ -48,27 +48,40 @@ public class Signup extends HttpServlet {
 						request.getParameter("password").trim().equals(request.getParameter("passwordConfirm").trim())
 			){
 			
-			EntityManager em = new EntityManager();
+			RepositoryManager rm = new RepositoryManager();
 			
-			Guest guest = new Guest();
-			guest.setName(request.getParameter("name"));
-			guest.setEmail(request.getParameter("email"));
-			guest.setPassword(request.getParameter("password"));
-			em.persist(guest);
-			em.flush();
+			Guest g = rm.getGuestManager().findOneByEmail(request.getParameter("email"));
 			
-			/**
-			 * Signin
-			 */
-			HttpSession session = request.getSession(true);
-			session.setAttribute("guest", guest);
-			session.setMaxInactiveInterval(10*60);
-			
-			response.setStatus(HttpServletResponse.SC_OK);
-			response.sendRedirect("main");
+			if(g == null){
+				EntityManager em = new EntityManager();
+				
+				Guest guest = new Guest();
+				guest.setName(request.getParameter("name"));
+				guest.setEmail(request.getParameter("email"));
+				guest.setPassword(request.getParameter("password"));
+				em.persist(guest);
+				em.flush();
+				
+				/**
+				 * Signin
+				 */
+				HttpSession session = request.getSession(true);
+				session.setAttribute("guest", guest);
+				session.setMaxInactiveInterval(10*60);
+				response.setStatus(HttpServletResponse.SC_OK);
+			}else{
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				request.setAttribute("errors", "Cette adresse mail est déjà utilisée par un autre utilisateur...");
+			}
 		}else{
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			response.sendRedirect("signup");
+			request.setAttribute("errors", "Une erreur est survenue, veuillez réessayer...");
+		}
+		
+		if(response.getStatus() == HttpServletResponse.SC_OK){
+			response.sendRedirect("main");
+		}else{
+			doGet(request, response);
 		}
 	}
 
