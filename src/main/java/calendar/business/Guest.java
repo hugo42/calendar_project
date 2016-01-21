@@ -30,11 +30,14 @@ public class Guest {
 	@Column
 	private String password;
 	
+	@Column
+	private Integer balance;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="guest")
     List<Purchase> purchases = new ArrayList<Purchase>();
 	
 	public Guest(){
-		
+		this.balance = 16;
 	}
 
 	public Integer getId() {
@@ -75,6 +78,14 @@ public class Guest {
 
 	public void addPurchase(Purchase purchase) {
 		this.purchases.add(purchase);
+	}
+
+	public Integer getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Integer balance) {
+		this.balance = balance;
 	}
 
 }

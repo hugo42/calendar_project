@@ -39,8 +39,6 @@ public class Signin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		
 		if( request.getParameter("email") != null &&
 				request.getParameter("password") != null
@@ -56,12 +54,22 @@ public class Signin extends HttpServlet {
 					HttpSession session = request.getSession(true);
 					session.setAttribute("guest", guest);
 					session.setMaxInactiveInterval(10*60);
+				}else{
+					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+					request.setAttribute("errors", "Mot de passe incorrect...");
 				}
+			}else{
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				request.setAttribute("errors", "Cette adresse mail ne correspond à aucun utilisateur...");
 			}
+		}else{
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			request.setAttribute("errors", "Une erreur est survenue, veuillez réessayer...");
 		}
 		
+		
 		if(response.getStatus() == HttpServletResponse.SC_BAD_REQUEST){
-			response.sendRedirect("signin");
+			doGet(request, response);
 		}else{
 			response.sendRedirect("main");
 		}

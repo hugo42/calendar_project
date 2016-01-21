@@ -49,7 +49,36 @@ class Signup
 						$('#errors', @w).text "Cette adresse mail est déjà utilisée..."
 		else
 			e.preventDefault()
+
+class Signin
+
+	constructor: ()->
+		@w = $('form#form-signin')
+		@bind()
+
+	bind: ()=>
+		$("#email", @w).stop().on 'input', (e)=>
+			if $(e.currentTarget).val().length > 4
+				@checkEmail()
+
+	checkEmail: ()=>
+
+		$('#errors', @w).text ""
+		$.ajax
+			url: "check-email"
+			method: "POST"
+			data:
+				"email" : $('#email', @w).val()
+			statusCode:
+				403: (data)=>
+					$('#errors', @w).text "Cette adresse mail ne correspond à aucun utilisateur..."
+				200: ()=>
+					$('#errors', @w).text ""
+
 $ ->
 
 	if $('form#form-signup').length > 0
 		new Signup
+
+	if $('form#form-signin').length > 0
+		new Signin

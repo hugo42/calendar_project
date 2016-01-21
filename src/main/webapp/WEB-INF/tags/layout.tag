@@ -22,7 +22,7 @@
 				<% if (session.getAttribute("guest") != null) { %>
 				  <ul class="nav navbar-nav navbar-right">
 			      	<li><a href="logout">${guest.name}</a></li>
-			      	<li><button class="btn btn-danger navbar-btn">Deconnexion</button>
+			      	<li><button id="logout" class="btn btn-danger navbar-btn">Deconnexion</button>
 			      </ul>
 				<% } %>
 		    </div>

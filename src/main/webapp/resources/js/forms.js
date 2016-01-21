@@ -1,5 +1,5 @@
 (function() {
-  var Signup,
+  var Signin, Signup,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   Signup = (function() {
@@ -87,9 +87,57 @@
 
   })();
 
+  Signin = (function() {
+    function Signin() {
+      this.checkEmail = __bind(this.checkEmail, this);
+      this.bind = __bind(this.bind, this);
+      this.w = $('form#form-signin');
+      this.bind();
+    }
+
+    Signin.prototype.bind = function() {
+      return $("#email", this.w).stop().on('input', (function(_this) {
+        return function(e) {
+          if ($(e.currentTarget).val().length > 4) {
+            return _this.checkEmail();
+          }
+        };
+      })(this));
+    };
+
+    Signin.prototype.checkEmail = function() {
+      $('#errors', this.w).text("");
+      return $.ajax({
+        url: "check-email",
+        method: "POST",
+        data: {
+          "email": $('#email', this.w).val()
+        },
+        statusCode: {
+          403: (function(_this) {
+            return function(data) {
+              return $('#errors', _this.w).text("Cette adresse mail ne correspond à aucun utilisateur...");
+            };
+          })(this),
+          200: (function(_this) {
+            return function() {
+              return $('#errors', _this.w).text("");
+            };
+          })(this)
+        }
+      });
+    };
+
+    return Signin;
+
+  })();
+
   $(function() {
     if ($('form#form-signup').length > 0) {
-      return new Signup;
+      new Signup;
+    }
+    if ($('form#form-signin').length > 0) {
+      return new Signin;
     }
   });
 

@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Index
+ * Servlet implementation class LegalNotice
  */
-@WebServlet(name = "index", urlPatterns = { "/index"}, loadOnStartup = 0 )
-public class Index extends HttpServlet {
+@WebServlet("/legal-notice")
+public class LegalNotice extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Index() {
+    public LegalNotice() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +26,7 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-//		session.setAttribute("stuff", "Allez n° "+session.getAttribute("guest_id")); %>
-		this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/views/legalNotice.jsp" ).forward( request, response );
 	}
 
 	/**

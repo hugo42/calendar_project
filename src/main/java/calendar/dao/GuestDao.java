@@ -29,7 +29,7 @@ public class GuestDao {
         	e.printStackTrace();
         }
 		
-		this.session.getTransaction().commit();
+		this.session.close();
 		return guest;
 	}
 
@@ -44,7 +44,8 @@ public class GuestDao {
         	e.printStackTrace();
         }
 		
-		this.session.getTransaction().commit();
+//		this.session.getTransaction().commit();
+		this.session.close();
 		return guest;
 	}
 }

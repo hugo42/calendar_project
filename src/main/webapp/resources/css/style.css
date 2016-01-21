@@ -9,6 +9,10 @@
   line-height: 0;
   height: 0;
 }
+form #errors {
+  color: red;
+  height: 30px;
+}
 .container #days {
   display: block;
   padding: 0;

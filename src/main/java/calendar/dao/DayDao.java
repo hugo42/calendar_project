@@ -31,7 +31,8 @@ public class DayDao {
         	e.printStackTrace();
         }
 		
-		this.session.getTransaction().commit();
+		this.session.close();
+		
 		return days;
 	}
 }

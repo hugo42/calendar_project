@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:layout>
@@ -33,7 +33,7 @@
 				    <label for="password">Confirm password</label>
 				    <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="Password confirmation" required>
 				  </div>
-				  <button type="button" id="validate" class="btn btn-primary">Créer compte</button>
+				  <button type="button" id="validate" class="btn btn-primary">CrÃ©er compte</button>
 				</form>			
 			</div>
 		</div>
