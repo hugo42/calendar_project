@@ -20,7 +20,7 @@
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<% if (session.getAttribute("guest") != null) { %>
 				  <ul class="nav navbar-nav navbar-right">
-			      	<li><a href="#">${guest.name}</a></li>
+			      	<li><a href="logout">${guest.name}</a></li>
 			      	<li><button class="btn btn-danger navbar-btn">Deconnexion</button>
 			      </ul>
 				<% } %>
