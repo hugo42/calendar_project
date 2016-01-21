@@ -40,12 +40,13 @@
 		         			</div>
 		       			</form>
 		
-						<form id="pictureForm" class="hidden">
+						<form method="POST" id="pictureForm" class="hidden" enctype="multipart/form-data" action="fileupload">
 		  					<div class="form-group">
 			    				<label for="picture" class="controle-label">Image:</label>
-			    				<input type="file" id="picture">
+			    				<input type="file" id="picture" name="picture">
 			    				<p class="help-block">La taille d'image ne doit pas dépasser 50ko...</p>
 			  				</div>
+			  				<input type="submit" class="btn btn-primary" value="Acheter"/>
 						</form>	
 		      		</div>
 		    	</div>
