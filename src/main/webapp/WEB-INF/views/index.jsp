@@ -3,9 +3,14 @@
 
 <t:layout>
 	<jsp:attribute name="title">
-		Index
+		Accueil
 	</jsp:attribute>
 	<jsp:attribute name="h1Title">
-		Index
+		Accueil
 	</jsp:attribute>
+	<jsp:body>
+		Pour commencer, veuillez vous connecter.
+		<a href="/signin" class="btn btn-default">Connexion</a>
+		<a href="/signup" class="btn btn-success">Inscription</a>
+	</jsp:body>
 </t:layout>
