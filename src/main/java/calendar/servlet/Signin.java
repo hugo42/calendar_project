@@ -44,10 +44,8 @@ public class Signin extends HttpServlet {
 				request.getParameter("password") != null
 			){
 			
-			RepositoryManager rm = new RepositoryManager();
-			
 			String email = request.getParameter("email");
-			Guest guest = rm.getGuestManager().findOneByEmail(email);
+			Guest guest = RepositoryManager.getGuestManager().findOneByEmail(email);
 			if(guest != null){
 				if(guest.getPassword().trim().equals(request.getParameter("password").trim())){
 					HttpSession session = request.getSession(true);

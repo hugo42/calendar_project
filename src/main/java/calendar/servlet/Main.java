@@ -37,8 +37,8 @@ public class Main extends HttpServlet {
 		if(session.getAttribute("guest") == null){
 			response.sendRedirect("signin");
 		}else{
-			RepositoryManager rm = new RepositoryManager();
-			List<Day> days= rm.getDayManager().findAll();			
+			
+			List<Day> days = RepositoryManager.getDayManager().findAll();			
 			request.setAttribute("days", days);
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/views/main.jsp" ).forward( request, response );
 		}

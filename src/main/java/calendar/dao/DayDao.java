@@ -12,25 +12,17 @@ import calendar.business.Guest;
 
 public class DayDao {
 
-	private Session session = null;
-	
 	public DayDao(){
-		
-		SessionFactory sf = HibernateFactory.getFactory();
-		this.session = sf.getCurrentSession();
-		this.session.beginTransaction();
 	}
 	
 	public Day find(Integer id){
 		
 		Day day = null;
 		try {
-            day = (Day) session.get(Day.class, id);
+            day = (Day) HibernateFactory.getSession().get(Day.class, id);
 		} catch (HibernateException e) {
         	e.printStackTrace();
         }
-		
-		this.session.close();
 		return day;
 	}
 
@@ -39,12 +31,10 @@ public class DayDao {
 		
 		List<Day> days = null;
 		try {
-			days = session.createCriteria(Day.class).list();
+			days = HibernateFactory.getSession().createCriteria(Day.class).list();
 		} catch (HibernateException e) {
         	e.printStackTrace();
         }
-		
-		this.session.close();
 		
 		return days;
 	}

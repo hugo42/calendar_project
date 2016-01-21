@@ -1,37 +1,36 @@
 package calendar.dao;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 public class EntityManager {
 
-	private Session session = null;
-	
 	public EntityManager(){
-		
-		SessionFactory sf = HibernateFactory.getFactory();
-		
-		this.session = sf.getCurrentSession();
-		this.session.beginTransaction();
 	}
 	
-	public void persist(Object entity){
+	/**
+	 * Récupère la session en cours avec la transaction démarrée
+	 */
+	public static void persist(Object entity){
 		try{
-			this.session.save(entity);
+			HibernateFactory.getSession().save(entity);
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			this.session.getTransaction().rollback();
+			HibernateFactory.getSession().getTransaction().rollback();
 		}
 	}
-	
-	public void flush(){
+
+	/**
+	 * Récupère la session en cours (la crée si elle n'existe pas)
+	 * Démarre une transaction si elle n'est pas déjà démarré
+	 * 
+	 * Commit les modifications de la transaction puis la termine
+	 */
+	public static void flush(){
 		try{
-			this.session.getTransaction().commit();
+			HibernateFactory.getSession().getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
+			HibernateFactory.getSession().getTransaction().rollback();
 		}
 	}
 	

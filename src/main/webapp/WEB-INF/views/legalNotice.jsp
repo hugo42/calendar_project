@@ -9,7 +9,6 @@
 		Mentions Légales
 	</jsp:attribute>
 	<jsp:body>
-		<div class="row">
 		<h2>Editeur</h2>
 		<p>
 			Ce site Internet est la propriété de la société Acme
@@ -43,6 +42,5 @@
 			Les marques éventuellement citées appartiennent à leurs propriétaires respectifs.<br><br>
 
 			</p>
-		</div>
 	</jsp:body>
 </t:layout>

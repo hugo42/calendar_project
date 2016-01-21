@@ -3,13 +3,12 @@
 
 <t:layout>
 	<jsp:attribute name="title">
-		Mentions Légales
+		Conditions générales de vente
 	</jsp:attribute>
 	<jsp:attribute name="h1Title">
-		Mentions Légales
+		Conditions générales de vente
 	</jsp:attribute>
 	<jsp:body>
-		<div class="row">
 			<p>
 			
 
@@ -119,6 +118,6 @@ Il est stipulé une clause limitative de responsabilité du Vendeur pour la réa
 <div class="cgv-left"><h2>Article 17 : Droit applicable</h2><br />
 Toutes les clauses figurant dans les présentes conditions générales de vente, ainsi que toutes les opérations d’achat et de vente qui y sont visées, seront soumises au droit français.</div>
 
-		</div>
+
 	</jsp:body>
 </t:layout>

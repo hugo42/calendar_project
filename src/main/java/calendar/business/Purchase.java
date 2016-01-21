@@ -47,6 +47,7 @@ public class Purchase {
 	}
 
 	public void setGuest(Guest guest) {
+		guest.addPurchase(this);
 		this.guest = guest;
 	}
 
@@ -55,6 +56,7 @@ public class Purchase {
 	}
 
 	public void setDay(Day day) {
+		day.setPurchase(this);
 		this.day = day;
 	}
 	
@@ -63,6 +65,7 @@ public class Purchase {
 	}
 
 	public void setFeature(Feature feature) {
+		feature.setPurchase(this);
 		this.feature = feature;
 	}
 	

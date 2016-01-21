@@ -10,13 +10,7 @@ import calendar.business.Guest;
 
 public class GuestDao {
 	
-	private Session session = null;
-	
 	public GuestDao(){
-		
-		SessionFactory sf = HibernateFactory.getFactory();
-		this.session = sf.getCurrentSession();
-		this.session.beginTransaction();
 	}
 
 	
@@ -24,12 +18,11 @@ public class GuestDao {
 		
 		Guest guest = null;
 		try {
-            guest = (Guest) session.get(Guest.class, id);
+            guest = (Guest) HibernateFactory.getSession().get(Guest.class, id);
 		} catch (HibernateException e) {
         	e.printStackTrace();
         }
 		
-		this.session.close();
 		return guest;
 	}
 
@@ -37,15 +30,13 @@ public class GuestDao {
 		
 		Guest guest = null;
 		try {
-            guest = (Guest) this.session.createCriteria(Guest.class)
+            guest = (Guest) HibernateFactory.getSession().createCriteria(Guest.class)
             	    .add( Restrictions.like("email", email) )
             	    .uniqueResult();
         } catch (HibernateException e) {
         	e.printStackTrace();
         }
 		
-//		this.session.getTransaction().commit();
-		this.session.close();
 		return guest;
 	}
 }
