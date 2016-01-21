@@ -26,12 +26,11 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-group">
-							<label class="radio-inline">
-								<input type="radio" id="dictionSelect"> Ajouter dicton
-							</label>
-		         			<label class="radio-inline">
-								<input type="radio" id="pictureSelect"> Ajouter image            
-		           			</label>
+							<select id="choiceForm" class="form-control">
+							  <option value="0"></option>
+							  <option value="1">Dicton</option>
+							  <option value="2">Image</option>
+							</select>
 		         		</div>
 		
 						<form id="dictionForm" class="hide">
