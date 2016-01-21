@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import antlr.debug.NewLineEvent;
 import calendar.business.Guest;
@@ -43,7 +44,8 @@ public class Signup extends HttpServlet {
 		if( request.getParameter("name") != null &&
 				request.getParameter("email") != null &&
 				request.getParameter("password") != null &&
-				request.getParameter("passwordConfirm") != null
+				request.getParameter("passwordConfirm") != null &&
+						request.getParameter("password").trim().equals(request.getParameter("passwordConfirm").trim())
 			){
 			
 //			TODO : tester les password
@@ -56,6 +58,12 @@ public class Signup extends HttpServlet {
 			guest.setPassword(request.getParameter("password"));
 			em.persist(guest);
 			em.flush();
+			
+			/**
+			 * Signin
+			 */
+			HttpSession session = request.getSession(true);
+			session.setAttribute("guest", guest);
 			
 			response.setStatus(HttpServletResponse.SC_OK);
 			response.sendRedirect("main");

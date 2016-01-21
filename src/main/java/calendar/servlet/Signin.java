@@ -1,22 +1,15 @@
 package calendar.servlet;
 
 import java.io.IOException;
-import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.springframework.util.comparator.InstanceComparator;
+import javax.servlet.http.HttpSession;
 
 import calendar.business.Guest;
-import calendar.dao.EntityManager;
 import calendar.dao.RepositoryManager;
 
 /**
@@ -60,7 +53,8 @@ public class Signin extends HttpServlet {
 			if(guest != null){
 				if(guest.getPassword().trim().equals(request.getParameter("password").trim())){
 					response.setStatus(HttpServletResponse.SC_OK);
-//					TODO : set user in session
+					HttpSession session = request.getSession(true);
+					session.setAttribute("guest", guest);
 				}
 			}
 		}

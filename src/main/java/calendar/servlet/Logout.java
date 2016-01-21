@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Main
+ * Servlet implementation class Logout
  */
-@WebServlet(name = "main", urlPatterns = { "/main" })
-public class Main extends HttpServlet {
+@WebServlet("/logout")
+public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Main() {
+    public Logout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,13 +27,10 @@ public class Main extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession(true);
-		if(session.getAttribute("guest") == null){
-			response.sendRedirect("signin");
-		}else{
-			this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
-		}
+		session.removeAttribute("guest");
+		response.sendRedirect("index");
 	}
 
 	/**

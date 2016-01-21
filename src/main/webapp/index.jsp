@@ -8,4 +8,7 @@
 	<jsp:attribute name="h1Title">
 		Index
 	</jsp:attribute>
+	<jsp:body>
+		${guest.name}
+	</jsp:body>
 </t:layout>

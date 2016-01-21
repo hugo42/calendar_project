@@ -17,14 +17,14 @@ import calendar.dao.EntityManager;
 /**
  * Servlet implementation class SchemaUpdate
  */
-@WebServlet("/schema-update")
-public class SchemaUpdate extends HttpServlet {
+@WebServlet("/create-data")
+public class Schema extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SchemaUpdate() {
+    public Schema() {
         super();
         // TODO Auto-generated constructor stub
     }
