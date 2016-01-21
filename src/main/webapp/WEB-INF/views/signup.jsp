@@ -14,11 +14,7 @@
 				<form id="form-signup" method="post" action="signup">
 					<div class="form-group">
 						<p id="errors">
-							<%-- <%
-								if(request.getParameter("errors") != null){
-									out.println(request.getParameter("errors"));
-								}
-							%> --%>
+							${errors}
 						</p>
 					</div>
 				  <div class="form-group">

@@ -9,6 +9,6 @@
 		Calendrier
 	</jsp:attribute>
 	<jsp:body>
-		
+		${testok}
 	</jsp:body>
 </t:layout>
