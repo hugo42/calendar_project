@@ -33,14 +33,14 @@
 							</select>
 		         		</div>
 		
-						<form id="dictionForm" class="hide">
+						<form id="dictionForm" class="hidden">
 		         			<div class="form-group">
 		           				<label for="dicton" class="control-label">Dicton:</label>
 		           				<textarea class="form-control" id="dicton"></textarea>
 		         			</div>
 		       			</form>
 		
-						<form id="pictureForm" class="hide">
+						<form id="pictureForm" class="hidden">
 		  					<div class="form-group">
 			    				<label for="picture" class="controle-label">Image:</label>
 			    				<input type="file" id="picture">

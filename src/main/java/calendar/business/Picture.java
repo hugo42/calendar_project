@@ -10,7 +10,7 @@ public class Picture extends Feature {
 	private String source;
 	
 	public Picture(){
-		super.setPrice(2);
+		super.setPrice(5);
 	}
 
 	public String getSource() {

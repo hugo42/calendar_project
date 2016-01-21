@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import calendar.business.Day;
+import calendar.business.Diction;
 import calendar.business.Guest;
+import calendar.business.Picture;
+import calendar.business.Purchase;
 import calendar.dao.EntityManager;
+import calendar.dao.RepositoryManager;
 
 /**
  * Servlet implementation class SchemaUpdate
@@ -77,6 +81,36 @@ public class Schema extends HttpServlet {
 			calendar.add(Calendar.DAY_OF_MONTH, 1);
 		}
 		
+		/**
+		 * Génaration tests de features
+		 */
+		
+		Picture picture = new Picture();
+		picture.setSource("source picture");
+		em.persist(picture);
+		
+		Diction diction= new Diction();
+		diction.setContent("bla bla bla");
+		em.persist(diction);
+		
+		em.flush();
+		
+		/**
+		 * Génaration tests de puraches
+		 */
+		
+		Purchase purchase = new Purchase();
+		purchase.setGuest(g);
+		purchase.setDay(
+				RepositoryManager.getDayManager().find(4)
+			);
+		
+		purchase.setFeature(
+				RepositoryManager.getPictureManager().find(1)
+			);
+		
+		em = new EntityManager();
+		em.persist(purchase);
 		em.flush();
 	}
 

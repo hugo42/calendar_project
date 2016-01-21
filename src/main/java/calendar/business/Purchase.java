@@ -35,7 +35,7 @@ public class Purchase {
 	}
 
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
@@ -43,7 +43,7 @@ public class Purchase {
 	}
 
 	public Guest getGuest() {
-		return guest;
+		return this.guest;
 	}
 
 	public void setGuest(Guest guest) {
@@ -51,11 +51,19 @@ public class Purchase {
 	}
 
 	public Day getDay() {
-		return day;
+		return this.day;
 	}
 
 	public void setDay(Day day) {
 		this.day = day;
+	}
+	
+	public Feature getFeature() {
+		return this.feature;
+	}
+
+	public void setFeature(Feature feature) {
+		this.feature = feature;
 	}
 	
 }

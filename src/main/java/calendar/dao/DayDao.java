@@ -20,6 +20,19 @@ public class DayDao {
 		this.session = sf.getCurrentSession();
 		this.session.beginTransaction();
 	}
+	
+	public Day find(Integer id){
+		
+		Day day = null;
+		try {
+            day = (Day) session.get(Day.class, id);
+		} catch (HibernateException e) {
+        	e.printStackTrace();
+        }
+		
+		this.session.close();
+		return day;
+	}
 
 	
 	public List<Day> findAll(){
