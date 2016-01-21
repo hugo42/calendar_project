@@ -9,7 +9,7 @@
 		Accueil
 	</jsp:attribute>
 	<jsp:body>
-		Pour commencer, veuillez vous connecter.
+		<p>Pour commencer, veuillez vous connecter.</p>
 		<a href="signin" class="btn btn-default">Connexion</a>
 		<a href="signup" class="btn btn-success">Inscription</a>
 	</jsp:body>
