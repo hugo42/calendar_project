@@ -41,10 +41,9 @@ public class CheckEmail extends HttpServlet {
 
 		if(request.getParameter("email") != null){
 			
-			RepositoryManager rm = new RepositoryManager();
 			
-			String email = request.getParameter("email");
-			Guest guest = rm.getGuestManager().findOneByEmail(email);
+			String email = request.getParameter("email");			
+			Guest guest = RepositoryManager.getGuestManager().findOneByEmail(email);
 			
 			if(guest == null){
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);

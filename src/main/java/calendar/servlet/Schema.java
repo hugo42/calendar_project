@@ -10,12 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+
 import calendar.business.Day;
 import calendar.business.Diction;
 import calendar.business.Guest;
 import calendar.business.Picture;
 import calendar.business.Purchase;
 import calendar.dao.EntityManager;
+import calendar.dao.HibernateFactory;
 import calendar.dao.RepositoryManager;
 
 /**
@@ -39,9 +43,6 @@ public class Schema extends HttpServlet {
 	@SuppressWarnings("deprecation")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
-		EntityManager em = new EntityManager();
-		
 		/**
 		 * Génération de Guest
 		 */
@@ -49,14 +50,14 @@ public class Schema extends HttpServlet {
 		g.setName("Hugo Delphin-Poulat");
 		g.setEmail("hugo@gmail.com");
 		g.setPassword("123");
-		em.persist(g);
+		EntityManager.persist(g);
 		
 		g = new Guest();
 		g.setName("Olivier Dupont");
 		g.setEmail("olivier@gmail.com");
 		g.setPassword("123");
-		em.persist(g);
-		
+		EntityManager.persist(g);
+
 		
 		/**
 		 * Génération des jours
@@ -76,7 +77,7 @@ public class Schema extends HttpServlet {
 			Day day = new Day();
 			day.setDayDate(date);
 			System.out.println(day.getTextDate());
-			em.persist(day);
+			EntityManager.persist(day);
 			
 			calendar.add(Calendar.DAY_OF_MONTH, 1);
 		}
@@ -87,31 +88,52 @@ public class Schema extends HttpServlet {
 		
 		Picture picture = new Picture();
 		picture.setSource("source picture");
-		em.persist(picture);
+		EntityManager.persist(picture);
 		
 		Diction diction= new Diction();
 		diction.setContent("bla bla bla");
-		em.persist(diction);
+		EntityManager.persist(diction);
 		
-		em.flush();
+		EntityManager.flush();
+		
 		
 		/**
 		 * Génaration tests de puraches
 		 */
 		
+//		
+//		Purchase avec une image
+//		
 		Purchase purchase = new Purchase();
-		purchase.setGuest(g);
+		purchase.setGuest(
+				RepositoryManager.getGuestManager().find(1)
+			);
 		purchase.setDay(
-				RepositoryManager.getDayManager().find(4)
+				RepositoryManager.getDayManager().find(1)
 			);
 		
 		purchase.setFeature(
 				RepositoryManager.getPictureManager().find(1)
 			);
+		EntityManager.persist(purchase);
 		
-		em = new EntityManager();
-		em.persist(purchase);
-		em.flush();
+//		
+//		Purchase avec un dicton
+//		
+		purchase = new Purchase();
+		purchase.setGuest(
+				RepositoryManager.getGuestManager().find(1)
+			);
+		purchase.setDay(
+				RepositoryManager.getDayManager().find(1)
+			);
+		
+		purchase.setFeature(
+				RepositoryManager.getDictionManager().find(2)
+			);
+		EntityManager.persist(purchase);
+		
+		EntityManager.flush();
 	}
 
 	/**

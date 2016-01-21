@@ -42,4 +42,12 @@ public class Feature {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+	
+	public Purchase getPurchase() {
+		return purchase;
+	}
+
+	public void setPurchase(Purchase purchase) {
+		this.purchase = purchase;
+	}
 }

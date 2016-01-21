@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import antlr.debug.NewLineEvent;
 import calendar.business.Guest;
 import calendar.dao.EntityManager;
+import calendar.dao.HibernateFactory;
 import calendar.dao.RepositoryManager;
 
 /**
@@ -48,19 +49,15 @@ public class Signup extends HttpServlet {
 						request.getParameter("password").trim().equals(request.getParameter("passwordConfirm").trim())
 			){
 			
-			RepositoryManager rm = new RepositoryManager();
-			
-			Guest g = rm.getGuestManager().findOneByEmail(request.getParameter("email"));
-			
+			Guest g = RepositoryManager.getGuestManager().findOneByEmail(request.getParameter("email"));
 			if(g == null){
-				EntityManager em = new EntityManager();
 				
 				Guest guest = new Guest();
 				guest.setName(request.getParameter("name"));
 				guest.setEmail(request.getParameter("email"));
 				guest.setPassword(request.getParameter("password"));
-				em.persist(guest);
-				em.flush();
+				EntityManager.persist(guest);
+				EntityManager.flush();
 				
 				/**
 				 * Signin
