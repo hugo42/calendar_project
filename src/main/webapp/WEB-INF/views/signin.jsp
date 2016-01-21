@@ -10,7 +10,7 @@
 	</jsp:attribute>
 	<jsp:body>
 		<div class="row">
-			<div class="col-md-10">
+			<div class="col-md-4">
 				<form action="signin" method="post">
 				  <div class="form-group">
 				    <label for="email">Email address</label>
@@ -20,7 +20,8 @@
 				    <label for="password">Password</label>
 				    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
 				  </div>
-				  <button type="submit" class="btn btn-primary">Se connecter</button>
+				  <button type="button" id="validate" class="btn btn-primary">Se connecter</button>
+				  <a href="signup" class="btn btn-success">Créer un compte</a>
 				</form>			
 			</div>
 		</div>
