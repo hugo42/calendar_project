@@ -20,7 +20,7 @@
 			    >
 			    	<c:if test="${day.purchase.feature['class'].simpleName eq 'Picture'}">
 			    		<c:set var="path" value="${fn:split(day.purchase.feature.source, '/')}" />
-			    		<img class="sized-pic" src="${pageContext.request.contextPath}/${path[4]}/${path[5]}/${path[6]}"/>
+			    		<img class="img-responsive" src="${path[4]}/${path[5]}/${path[6]}"/>
 			    	</c:if>
 			    	<c:if test="${day.purchase.feature['class'].simpleName eq 'Diction'}">
 			    		<p class="sized-text">${day.purchase.feature.content }</p>

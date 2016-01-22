@@ -51,6 +51,7 @@ public class FileUpload extends HttpServlet {
 	 */
 	public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 		processRequest(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/views/upload.jsp").forward( request, response );
 	}
    
 	/**
@@ -114,7 +115,6 @@ public class FileUpload extends HttpServlet {
 		            writer.close();
 		        }
 		        EntityManager.flush();
-		        this.getServletContext().getRequestDispatcher("/main").forward( request, response );
 		    }
 	    }	    
 	}
