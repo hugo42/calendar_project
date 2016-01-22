@@ -69,7 +69,7 @@ public class FileUpload extends HttpServlet {
 	protected synchronized void processRequest(HttpServletRequest request,
 	        HttpServletResponse response)
 	        throws ServletException, IOException {
-	    response.setContentType("text/html;charset=UTF-8");
+	    //response.setContentType("text/html;charset=UTF-8");
 
 	    final String path = "/opt/tomcat/webapps/CalendarProject/resources/images";
 	    final Part filePart = request.getPart("picture");
