@@ -23,8 +23,8 @@
 			    		<img class="sized-pic" src="${pageContext.request.contextPath}/${path[4]}/${path[5]}/${path[6]}"/>
 			    	</c:if>
 			    	<c:if test="${day.purchase.feature['class'].simpleName eq 'Diction'}">
-			    		<blockquote class="sized-text">
-			    			<p>${day.purchase.feature.content }</p>
+			    		<blockquote>
+			    			<p class="sized-text">${day.purchase.feature.content }</p>
 						</blockquote>
 			    	</c:if>
 			    	<p class="label align-bottom">${day.textDate}</p>
