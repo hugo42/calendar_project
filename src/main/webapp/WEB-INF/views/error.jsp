@@ -10,7 +10,7 @@
 		Erreur
 	</jsp:attribute>
 	<jsp:body>
-		<p>${error}</p>
+		<p>${errors}</p>
 		
 	</jsp:body>
 </t:layout>
