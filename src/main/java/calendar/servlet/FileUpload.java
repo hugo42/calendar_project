@@ -53,7 +53,7 @@ public class FileUpload extends HttpServlet {
 	    //final String abs_path = "/opt/tomcat/webapps/";
 	    //final String dyn_path = "\\WEB-INF\\uploads";
 	    //final String path = abs_path + dyn_path;
-	    final String path = "/opt/tomcat/webapps/CalendarProject/resources/images/";
+	    final String path = "C:\\fichier";
 	    final Part filePart = request.getPart("picture");
 	    final String fileName = getFileName(filePart);
 
@@ -61,7 +61,7 @@ public class FileUpload extends HttpServlet {
 	    InputStream filecontent = null;
 	    final PrintWriter writer = response.getWriter();
 	    
-	    if (this.purchase(Integer.parseInt(request.getParameter("day")), path + File.separator + fileName, (Guest) request.getSession(true).getAttribute("guest"))){
+	    if (purchase(Integer.parseInt(request.getParameter("day")), path + File.separator + fileName, (Guest) request.getSession(true).getAttribute("guest"))){
 	    	
 	    	try {
 		        out = new FileOutputStream(new File(path + File.separator
@@ -95,10 +95,8 @@ public class FileUpload extends HttpServlet {
 		        if (writer != null) {
 		            writer.close();
 		        }
+		        EntityManager.flush();
 		    }
-	    	
-	    	EntityManager.flush();
-	    	doGet(request, response);
 	    }
 
 	    
@@ -126,7 +124,6 @@ public class FileUpload extends HttpServlet {
 			picture.setSource(file);
 			
 			Purchase purchase = new Purchase();
-			EntityManager.persist(purchase);
 			
 			purchase.setDay(pDay);
 			purchase.setFeature(picture);
@@ -134,10 +131,9 @@ public class FileUpload extends HttpServlet {
 			
 			pGuest.setBalance(pGuest.getBalance() - 5);
 			
-			EntityManager.persist(purchase);
 			EntityManager.persist(picture);
-			EntityManager.persist(pGuest);
-			
+			EntityManager.persist(purchase);
+				
 			return true;
 		}else{
 			EntityManager.rollback();
