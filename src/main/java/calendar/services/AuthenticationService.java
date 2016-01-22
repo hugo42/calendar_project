@@ -89,4 +89,34 @@ public class AuthenticationService {
 		
 		return error;
 	}
+	
+	/**
+	 * Déconnecte l'utilisateur
+	 * @param session session HTTP de l'utilisateur sur le site
+	 */
+	public static void logout(HttpSession session){
+		
+		session.removeAttribute("guest");
+	}
+	
+	/**
+	 * Test si l'utilisateur est connecté
+	 * @param session session HTTP de l'utilisateur sur le site
+	 */
+	public static boolean isConnected(HttpSession session){
+		
+		if(session.getAttribute("guest") != null){
+			
+			try {
+				Guest guest = (Guest) session.getAttribute("guest");
+				Guest guestExists = RepositoryManager.getGuestManager().find(guest.getId());
+				if(guestExists != null){
+					return true;
+				}
+			} catch (Exception e) {
+				return false;
+			}
+		}
+		return false;
+	}
 }

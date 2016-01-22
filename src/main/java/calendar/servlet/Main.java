@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import calendar.business.Day;
 import calendar.dao.RepositoryManager;
+import calendar.services.AuthenticationService;
 
 /**
  * Servlet implementation class Main
@@ -37,14 +38,12 @@ public class Main extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		HttpSession session = request.getSession(true);
-		if(session.getAttribute("guest") == null){
-			response.sendRedirect("signin");
-		}else{
+		if (AuthenticationService.isConnected(request.getSession())){
 			
-			List<Day> days = RepositoryManager.getDayManager().findAll();			
-			request.setAttribute("days", days);
+			request.setAttribute("days", RepositoryManager.getDayManager().findAll());
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/views/main.jsp" ).forward( request, response );
+		}else{
+			response.sendRedirect("signin");
 		}
 	}
 

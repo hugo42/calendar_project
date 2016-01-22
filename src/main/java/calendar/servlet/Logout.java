@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import calendar.services.AuthenticationService;
+
 /**
  * Servlet implementation class Logout
  * Supprime l'utilisateur gardé en session
@@ -32,8 +34,7 @@ public class Logout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		HttpSession session = request.getSession(true);
-		session.removeAttribute("guest");
+		AuthenticationService.logout(request.getSession(true));
 		response.sendRedirect("index");
 	}
 
