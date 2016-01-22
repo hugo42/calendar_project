@@ -15,7 +15,7 @@ public class EntityManager {
 			HibernateFactory.getSession().save(entity);
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			HibernateFactory.getSession().getTransaction().rollback();
+			EntityManager.rollback();
 		}
 	}
 
@@ -28,10 +28,16 @@ public class EntityManager {
 	public static void flush(){
 		try{
 			HibernateFactory.getSession().getTransaction().commit();
+			HibernateFactory.getSession().close();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			HibernateFactory.getSession().getTransaction().rollback();
+			EntityManager.rollback();
 		}
+	}
+	
+	public static void rollback(){
+		HibernateFactory.getSession().getTransaction().rollback();
+		HibernateFactory.getSession().close();
 	}
 	
 }

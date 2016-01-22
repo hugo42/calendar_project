@@ -3,6 +3,7 @@ class purchaseModal
 	constructor: ()->
 		$('#buyModal').on 'shown.bs.modal', (e)=>
 			@w = $("#buyModal .modal-dialog")
+			$('.day-input', @w).val $(e.relatedTarget).data('day-id')
 			@w.find('.modal-title').text 'Acheter le ' + $('.label', $(e.relatedTarget)).text() + " ?" 
 		@init()
 

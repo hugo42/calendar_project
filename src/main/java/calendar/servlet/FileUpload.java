@@ -15,7 +15,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
+import calendar.business.Day;
+import calendar.business.Guest;
+import calendar.business.Picture;
+import calendar.business.Purchase;
+import calendar.dao.EntityManager;
+import calendar.dao.RepositoryManager;
 
 /**
  * Servlet implementation class FileUpload
@@ -52,38 +60,48 @@ public class FileUpload extends HttpServlet {
 	    OutputStream out = null;
 	    InputStream filecontent = null;
 	    final PrintWriter writer = response.getWriter();
+	    
+	    if (this.purchase(Integer.parseInt(request.getParameter("day")), path + File.separator + fileName, (Guest) request.getSession(true).getAttribute("guest"))){
+	    	
+	    	try {
+		        out = new FileOutputStream(new File(path + File.separator
+		                + fileName));
+		        filecontent = filePart.getInputStream();
 
-	    try {
-	        out = new FileOutputStream(new File(path + File.separator
-	                + fileName));
-	        filecontent = filePart.getInputStream();
+		        int read = 0;
+		        final byte[] bytes = new byte[1024];
 
-	        int read = 0;
-	        final byte[] bytes = new byte[1024];
+		        while ((read = filecontent.read(bytes)) != -1) {
+		            out.write(bytes, 0, read);
+		        }
+		    } catch (FileNotFoundException fne) {
+		    	
+		    	EntityManager.rollback();
+		    	
+		        writer.println("You either did not specify a file to upload or are "
+		                + "trying to upload a file to a protected or nonexistent "
+		                + "location.");
+		        writer.println("<br/> ERROR: " + fne.getMessage());
 
-	        while ((read = filecontent.read(bytes)) != -1) {
-	            out.write(bytes, 0, read);
-	        }
-	        doGet(request, response);
-	    } catch (FileNotFoundException fne) {
-	        writer.println("You either did not specify a file to upload or are "
-	                + "trying to upload a file to a protected or nonexistent "
-	                + "location.");
-	        writer.println("<br/> ERROR: " + fne.getMessage());
-
-	        LOGGER.log(Level.SEVERE, "Problems during file upload. Error: {0}", 
-	                new Object[]{fne.getMessage()});
-	    } finally {
-	        if (out != null) {
-	            out.close();
-	        }
-	        if (filecontent != null) {
-	            filecontent.close();
-	        }
-	        if (writer != null) {
-	            writer.close();
-	        }
+		        LOGGER.log(Level.SEVERE, "Problems during file upload. Error: {0}", 
+		                new Object[]{fne.getMessage()});
+		    } finally {
+		        if (out != null) {
+		            out.close();
+		        }
+		        if (filecontent != null) {
+		            filecontent.close();
+		        }
+		        if (writer != null) {
+		            writer.close();
+		        }
+		    }
+	    	
+	    	EntityManager.flush();
+	    	doGet(request, response);
 	    }
+
+	    
 	}
 
 	private String getFileName(final Part part) {
@@ -96,5 +114,34 @@ public class FileUpload extends HttpServlet {
 	        }
 	    }
 	    return null;
+	}
+	
+	private boolean purchase(Integer day, String file, Guest pGuest){
+		
+		Day pDay = RepositoryManager.getDayManager().find(day);
+		if( pDay.getPurchase() == null &&
+				pGuest.getBalance() >= 5 ){
+			
+			Picture picture = new Picture();
+			picture.setSource(file);
+			
+			Purchase purchase = new Purchase();
+			EntityManager.persist(purchase);
+			
+			purchase.setDay(pDay);
+			purchase.setFeature(picture);
+			purchase.setGuest(pGuest);
+			
+			pGuest.setBalance(pGuest.getBalance() - 5);
+			
+			EntityManager.persist(purchase);
+			EntityManager.persist(picture);
+			EntityManager.persist(pGuest);
+			
+			return true;
+		}else{
+			EntityManager.rollback();
+			return false;
+		}
 	}
 }

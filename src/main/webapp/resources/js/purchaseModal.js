@@ -9,6 +9,7 @@
       $('#buyModal').on('shown.bs.modal', (function(_this) {
         return function(e) {
           _this.w = $("#buyModal .modal-dialog");
+          $('.day-input', _this.w).val($(e.relatedTarget).data('day-id'));
           return _this.w.find('.modal-title').text('Acheter le ' + $('.label', $(e.relatedTarget)).text() + " ?");
         };
       })(this));

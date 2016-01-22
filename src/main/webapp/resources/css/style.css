@@ -35,13 +35,11 @@ form #errors {
   transition: 0.4s;
   margin: 0 30px 30px 0;
   background-color: #fff;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-}
-.container #days .day:hover {
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26);
 }
 .container #days .day[data-toggle="modal"]:hover {
   cursor: pointer;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.26);
 }
 .container #days .day .label {
   color: #337AB7;

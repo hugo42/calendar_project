@@ -39,6 +39,8 @@
 		
 						<form id="dictionForm" class="hidden">
 		         			<div class="form-group">
+		         				<input type="hidden" name="guest" value="${guest.id}">
+		         				<input type="hidden" class="day-input" name="day" value="">
 		           				<label for="dicton" class="control-label">Dicton:</label>
 		           				<textarea class="form-control" id="dicton"></textarea>
 		         			</div>
@@ -46,6 +48,8 @@
 		
 						<form method="POST" id="pictureForm" class="hidden" enctype="multipart/form-data" action="fileupload">
 		  					<div class="form-group">
+		  						<input type="hidden" name="guest" value="${guest.id}">
+		  						<input type="hidden" class="day-input" name="day" value="">
 			    				<label for="picture" class="controle-label">Image:</label>
 			    				<input type="file" id="picture" name="picture">
 			    				<p class="help-block">La taille d'image ne doit pas dépasser 50ko...</p>
