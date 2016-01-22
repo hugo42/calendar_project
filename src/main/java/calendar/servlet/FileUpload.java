@@ -51,6 +51,7 @@ public class FileUpload extends HttpServlet {
 	 */
 	public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 		processRequest(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/views/upload.jsp").forward( request, response );
 	}
    
 	/**
@@ -69,7 +70,7 @@ public class FileUpload extends HttpServlet {
 	protected synchronized void processRequest(HttpServletRequest request,
 	        HttpServletResponse response)
 	        throws ServletException, IOException {
-	    //response.setContentType("text/html;charset=UTF-8");
+	    response.setContentType("text/html;charset=UTF-8");
 
 	    final String path = "/opt/tomcat/webapps/CalendarProject/resources/images";
 	    final Part filePart = request.getPart("picture");
@@ -114,7 +115,6 @@ public class FileUpload extends HttpServlet {
 		            writer.close();
 		        }
 		        EntityManager.flush();
-		        response.sendRedirect("main");
 		    }
 	    }	    
 	}
