@@ -41,6 +41,14 @@ form #errors {
   cursor: pointer;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.26);
 }
+.container #days .day .sized-text sized-pic {
+  width: 230px;
+  height: 150px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 .container #days .day .label {
   color: #337AB7;
+  bottom: 0;
+  text-align: center;
 }

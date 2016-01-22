@@ -21,6 +21,7 @@
 			<p>Allons jeter un oeil au calendrier !</p>
 			<a href="main" class="btn btn-success">Calendrier</a>
 		</c:if>
+		<img src="uploads/train.jpg" />
 				
 	</jsp:body>
 </t:layout>
