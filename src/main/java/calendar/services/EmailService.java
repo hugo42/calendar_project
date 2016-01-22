@@ -1,7 +1,5 @@
 package calendar.services;
 
-import javax.servlet.http.HttpServletResponse;
-
 import calendar.business.Guest;
 import calendar.dao.RepositoryManager;
 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import calendar.business.Guest;
 import calendar.dao.RepositoryManager;
+import calendar.services.EmailService;
 
 /**
  * Servlet implementation class CheckEmail
@@ -41,19 +42,12 @@ public class CheckEmail extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		
 		if(request.getParameter("email") != null){
-			
-			
-			String email = request.getParameter("email");			
-			Guest guest = RepositoryManager.getGuestManager().findOneByEmail(email);
-			
-			if(guest == null){
-				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-			}else{
+			if(EmailService.emailExists(request.getParameter("email"))){
 				response.setStatus(HttpServletResponse.SC_OK);
 			}
-		}else{
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
 		doGet(request, response);
 	}

@@ -57,7 +57,7 @@ class Signin
 			data:
 				"email" : $('#email', @w).val()
 			statusCode:
-				403: (data)=>
+				404: (data)=>
 					$('#errors', @w).text "Cette adresse mail ne correspond à aucun utilisateur..."
 				200: ()=>
 					$('#errors', @w).text ""

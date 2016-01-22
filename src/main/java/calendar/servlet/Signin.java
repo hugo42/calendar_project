@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import calendar.business.Guest;
 import calendar.dao.RepositoryManager;
+import calendar.services.AuthenticationService;
 
 /**
  * Servlet implementation class Signin
@@ -38,44 +39,27 @@ public class Signin extends HttpServlet {
 	}
 
 	/**
+	 * Appel le service d'authentification en vue de connecter l'utilisateur
+	 * Succes : Connecte l'utilisateur et le redirige sur la servlet main
+	 * Error : Renvoie l'utilisateur sur la page de connexion et affiche l'erreur
+	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 * Gére la sauvegarde de l'utilisateur en session en vue d'une connexion
-	 * Effectue au préalable un test sur le mail et le password
-	 * Et redirige sur la servlet main en cas de succes ou sur la vue error.jsp en cas d'erreur
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if( request.getParameter("email") != null &&
-				request.getParameter("password") != null
-			){
+		String error = AuthenticationService.signin(request.getParameter("email"),
+					request.getParameter("password"),
+					request.getSession(true));
+		
+		if(error != null){
 			
-			String email = request.getParameter("email");
-			Guest guest = RepositoryManager.getGuestManager().findOneByEmail(email);
-			if(guest != null){
-				if(guest.getPassword().trim().equals(request.getParameter("password").trim())){
-					HttpSession session = request.getSession(true);
-					session.setAttribute("guest", guest);
-					session.setMaxInactiveInterval(10*60);
-					response.setStatus(HttpServletResponse.SC_OK);
-				}else{
-					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-					request.setAttribute("errors", "Mot de passe incorrect...");
-				}
-			}else{
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				request.setAttribute("errors", "Cette adresse mail ne correspond à aucun utilisateur...");
-			}
-		}else{
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			request.setAttribute("errors", "Une erreur est survenue, veuillez réessayer...");
-		}
-		
-		
-		if(response.getStatus() == HttpServletResponse.SC_OK){
-			response.sendRedirect("main");
-		}else{
+			request.setAttribute("error", error);
 			doGet(request, response);
+		}else{
+			
+			response.setStatus(HttpServletResponse.SC_OK);
+			response.sendRedirect("main");
 		}
 	}
-
 }

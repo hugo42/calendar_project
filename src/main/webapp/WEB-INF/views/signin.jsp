@@ -14,7 +14,7 @@
 				<form id="form-signin" action="signin" method="post">
 				<div class="form-group">
 						<p id="errors">
-							${errors}
+							${error}
 						</p>
 					</div>
 				  <div class="form-group">

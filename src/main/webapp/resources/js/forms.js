@@ -89,7 +89,7 @@
           "email": $('#email', this.w).val()
         },
         statusCode: {
-          403: (function(_this) {
+          404: (function(_this) {
             return function(data) {
               return $('#errors', _this.w).text("Cette adresse mail ne correspond à aucun utilisateur...");
             };

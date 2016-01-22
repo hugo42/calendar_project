@@ -13,6 +13,9 @@ form #errors {
   color: red;
   height: 30px;
 }
+.container {
+  padding-bottom: 60px;
+}
 .container #days {
   display: block;
   padding: 0;

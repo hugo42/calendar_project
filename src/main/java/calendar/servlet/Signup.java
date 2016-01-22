@@ -13,6 +13,7 @@ import calendar.business.Guest;
 import calendar.dao.EntityManager;
 import calendar.dao.HibernateFactory;
 import calendar.dao.RepositoryManager;
+import calendar.services.AuthenticationService;
 
 /**
  * Servlet implementation class Signup
@@ -40,51 +41,30 @@ public class Signup extends HttpServlet {
 	}
 
 	/**
+	 * Appel le service d'authentification en vue de créer l'utilisateur
+	 * Succes : Connecte l'utilisateur et le redirige sur la servlet main
+	 * Error : Renvoie l'utilisateur sur la page d'inscription et affiche l'erreur
+	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 * Gère la création d'un utilisateur en base
-	 * Effectue au préalable des tests sur les champs replis par l'utilisateur
-	 * Vérifie également que l'utilisateur n'existe pas déjà
-	 * Redirige sur la servlet main en cas de succces et vers la page error.jsp en cas d'erreur
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if( request.getParameter("name") != null &&
-				request.getParameter("email") != null &&
-				request.getParameter("password") != null &&
-				request.getParameter("passwordConfirm") != null &&
-						request.getParameter("password").trim().equals(request.getParameter("passwordConfirm").trim())
-			){
+		String error = AuthenticationService.signup(
+				request.getParameter("name"),
+				request.getParameter("email"),
+				request.getParameter("password"),
+				request.getParameter("passwordConfirm"),
+				request.getSession(true));
+	
+		if(error != null){
 			
-			Guest g = RepositoryManager.getGuestManager().findOneByEmail(request.getParameter("email"));
-			if(g == null){
-				
-				Guest guest = new Guest();
-				guest.setName(request.getParameter("name"));
-				guest.setEmail(request.getParameter("email"));
-				guest.setPassword(request.getParameter("password"));
-				EntityManager.persist(guest);
-				EntityManager.flush();
-				
-				/**
-				 * Signin
-				 */
-				HttpSession session = request.getSession(true);
-				session.setAttribute("guest", guest);
-				session.setMaxInactiveInterval(10*60);
-				response.setStatus(HttpServletResponse.SC_OK);
-			}else{
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				request.setAttribute("errors", "Cette adresse mail est déjà utilisée par un autre utilisateur...");
-			}
-		}else{
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			request.setAttribute("errors", "Une erreur est survenue, veuillez réessayer...");
-		}
-		
-		if(response.getStatus() == HttpServletResponse.SC_OK){
-			response.sendRedirect("main");
-		}else{
+			request.setAttribute("error", error);
 			doGet(request, response);
+		}else{
+			
+			response.setStatus(HttpServletResponse.SC_OK);
+			response.sendRedirect("main");
 		}
 	}
 
