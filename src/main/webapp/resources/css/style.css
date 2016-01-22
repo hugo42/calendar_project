@@ -38,8 +38,10 @@ form #errors {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
 .container #days .day:hover {
-  cursor: pointer;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
+}
+.container #days .day[data-toggle="modal"]:hover {
+  cursor: pointer;
 }
 .container #days .day .label {
   color: #337AB7;
