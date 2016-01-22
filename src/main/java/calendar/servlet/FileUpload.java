@@ -114,7 +114,7 @@ public class FileUpload extends HttpServlet {
 		            writer.close();
 		        }
 		        EntityManager.flush();
-		        this.getServletContext().getRequestDispatcher("/main").forward( request, response );
+		        response.sendRedirect("main");
 		    }
 	    }	    
 	}
