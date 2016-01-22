@@ -3,12 +3,9 @@ package calendar.dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Property;
 
 import calendar.business.Day;
-import calendar.business.Guest;
 
 /**
  * Helper Hibernate pour les requetes de récupération des entités Day
@@ -42,7 +39,11 @@ public class DayDao {
 		
 		List<Day> days = null;
 		try {
-			days = HibernateFactory.getSession().createCriteria(Day.class).list();
+			days = HibernateFactory.getSession()
+					.createCriteria(Day.class)
+					.addOrder( Property.forName("id").asc() )
+					.list();
+			
 		} catch (HibernateException e) {
         	e.printStackTrace();
         }
