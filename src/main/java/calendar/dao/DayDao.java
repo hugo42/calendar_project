@@ -20,7 +20,7 @@ public class DayDao {
 	
 	/**
 	 * Récupère une entité Day en base par son id
-	 * @param Integer id
+	 * @param id Id du jour recherché
 	 * @return Day
 	 */
 	public Day find(Integer id){

@@ -17,7 +17,7 @@ public class PictureDao {
 	/**
 	 * /**
 	 * Récupère une entité Picture en base par son id
-	 * @param id
+	 * @param id Id de l'image recherchée
 	 * @return Picture
 	 */
 	public Picture find(Integer id){

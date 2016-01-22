@@ -18,7 +18,7 @@ public class GuestDao {
 
 	/**
 	 * Récupère une entité Guest en base par son id
-	 * @param id
+	 * @param id L'id du guest recherché
 	 * @return Guest
 	 */
 	public Guest find(Integer id){
@@ -35,7 +35,7 @@ public class GuestDao {
 
 	/**
 	 * Récupère une entité Guest en base par son email
-	 * @param id
+	 * @param email Email du guest recherché
 	 * @return Guest
 	 */
 	public Guest findOneByEmail(String email){

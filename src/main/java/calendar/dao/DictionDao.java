@@ -16,7 +16,7 @@ public class DictionDao {
 	
 	/**
 	 * Récupère une entité Diction en base par son id
-	 * @param id
+	 * @param id Id du dicton recherché
 	 * @return
 	 */
 	public Diction find(Integer id){
