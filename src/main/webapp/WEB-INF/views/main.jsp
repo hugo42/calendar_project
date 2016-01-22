@@ -19,8 +19,8 @@
 			    	</c:if>
 			    >
 			    	<c:if test="${day.purchase.feature['class'].simpleName eq 'Picture'}">
-			    		<c:set var="path" value="${fn:split(day.purchase.feature.source, '/opt/tomcat/webapps/ProjectCalendar')}" />
-			    		<img class="img-responsive" src="${path[0]}"/>
+			    		<c:set var="path" value="${fn:split(day.purchase.feature.source, '/')}" />
+			    		<img class="img-responsive" src="${path[4]}"/>
 			    	</c:if>
 			    	<c:if test="${day.purchase.feature['class'].simpleName eq 'Diction'}">
 			    		<p>${day.purchase.feature.content }</p>
