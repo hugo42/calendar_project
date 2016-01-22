@@ -7,8 +7,20 @@ import calendar.business.Guest;
 import calendar.dao.EntityManager;
 import calendar.dao.RepositoryManager;
 
+/**
+ * Service qui gère l'authentification (connexion et inscription)
+ *
+ */
 public class AuthenticationService {
 
+	/**
+	 * Tente de connecter l'utilisateur
+	 * Success : Connection l'utilisateur
+	 * @param email Email de l'utilisateur
+	 * @param password Mot de passe de l'utilisateur
+	 * @param session session HTTP de l'utilisateur sur le site
+	 * @return Success : null, Error : l'erreur
+	 */
 	public static String signin(String email, String password, HttpSession session){
 		
 		String error = null;
