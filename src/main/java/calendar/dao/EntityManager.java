@@ -39,5 +39,4 @@ public class EntityManager {
 		HibernateFactory.getSession().getTransaction().rollback();
 		HibernateFactory.getSession().close();
 	}
-	
 }

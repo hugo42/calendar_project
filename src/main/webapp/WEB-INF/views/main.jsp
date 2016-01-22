@@ -18,6 +18,8 @@
 			    	</c:if>
 			    >
 			    	<p class="label">${day.textDate}</p>
+			    	<c:if test="${not empty day.purchase}">
+			    	</c:if>
 			    </li>
 			</c:forEach>
 		</ul>
@@ -37,13 +39,14 @@
 							</select>
 		         		</div>
 		
-						<form id="dictionForm" class="hidden">
+						<form method="POST" id="dictionForm" class="hidden" action="purchaseDiction">
 		         			<div class="form-group">
 		         				<input type="hidden" name="guest" value="${guest.id}">
 		         				<input type="hidden" class="day-input" name="day" value="">
 		           				<label for="dicton" class="control-label">Dicton:</label>
-		           				<textarea class="form-control" id="dicton"></textarea>
+		           				<textarea class="form-control" name="diction" id="dicton"></textarea>
 		         			</div>
+		         			<input type="submit" class="btn btn-primary" value="Acheter"/>
 		       			</form>
 		
 						<form method="POST" id="pictureForm" class="hidden" enctype="multipart/form-data" action="fileupload">

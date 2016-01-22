@@ -125,7 +125,7 @@ public class Schema extends HttpServlet {
 				RepositoryManager.getGuestManager().find(1)
 			);
 		purchase.setDay(
-				RepositoryManager.getDayManager().find(1)
+				RepositoryManager.getDayManager().find(2)
 			);
 		
 		purchase.setFeature(
