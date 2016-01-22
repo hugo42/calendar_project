@@ -42,7 +42,10 @@ public class FileUpload extends HttpServlet {
 	    response.setContentType("text/html;charset=UTF-8");
 
 	    // Create path components to save the file
-	    final String path = "C:\\fichier";
+	    //final String abs_path = "/opt/tomcat/webapps/";
+	    //final String dyn_path = "\\WEB-INF\\uploads";
+	    //final String path = abs_path + dyn_path;
+	    final String path = "/opt/tomcat/webapps/calendar_project/WEB-INF/uploads/";
 	    final Part filePart = request.getPart("picture");
 	    final String fileName = getFileName(filePart);
 
