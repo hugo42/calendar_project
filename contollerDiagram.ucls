@@ -64,16 +64,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="calendar.servlet.Error" project="calendar_project" 
-    file="/calendar_project/src/main/java/calendar/servlet/Error.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="268" y="434"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="calendar.servlet.Signin" project="calendar_project" 
+  <class id="8" language="java" name="calendar.servlet.Signin" project="calendar_project" 
     file="/calendar_project/src/main/java/calendar/servlet/Signin.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="712" y="434"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -82,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="calendar.servlet.PurchaseDiction" project="calendar_project" 
+  <class id="9" language="java" name="calendar.servlet.PurchaseDiction" project="calendar_project" 
     file="/calendar_project/src/main/java/calendar/servlet/PurchaseDiction.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1156" y="434"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -91,7 +82,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="calendar.servlet.Logout" project="calendar_project" 
+  <class id="10" language="java" name="calendar.servlet.Logout" project="calendar_project" 
     file="/calendar_project/src/main/java/calendar/servlet/Logout.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1600" y="434"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -100,7 +91,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="calendar.servlet.CheckEmail" project="calendar_project" 
+  <class id="11" language="java" name="calendar.servlet.CheckEmail" project="calendar_project" 
     file="/calendar_project/src/main/java/calendar/servlet/CheckEmail.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="242" y="952"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -109,7 +100,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="calendar.servlet.Main" project="calendar_project" 
+  <class id="12" language="java" name="calendar.servlet.Main" project="calendar_project" 
     file="/calendar_project/src/main/java/calendar/servlet/Main.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="722" y="956"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
