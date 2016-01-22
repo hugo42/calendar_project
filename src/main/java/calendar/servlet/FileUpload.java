@@ -53,7 +53,7 @@ public class FileUpload extends HttpServlet {
 	    //final String abs_path = "/opt/tomcat/webapps/";
 	    //final String dyn_path = "\\WEB-INF\\uploads";
 	    //final String path = abs_path + dyn_path;
-	    final String path = "C:\\fichier";
+	    final String path = "/opt/tomcat/webapps/resources/images";
 	    final Part filePart = request.getPart("picture");
 	    final String fileName = getFileName(filePart);
 
