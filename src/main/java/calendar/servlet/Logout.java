@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Logout
+ * Supprime l'utilisateur gardé en session
+ * Mappée sur le path /logout et redirege vers la servlet index 
  */
 @WebServlet("/logout")
 public class Logout extends HttpServlet {
@@ -25,6 +27,8 @@ public class Logout extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Supprime le guest de l'objet session pour le deconnecter
+	 * Redirige vers la servlet d'index
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

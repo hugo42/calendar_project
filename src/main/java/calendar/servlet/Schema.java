@@ -24,6 +24,8 @@ import calendar.dao.RepositoryManager;
 
 /**
  * Servlet implementation class SchemaUpdate
+ * Sert uniquement à la génération de données de test
+ * Est mappés sur le path /create-date ne renvoie rien 
  */
 @WebServlet("/create-data")
 public class Schema extends HttpServlet {
@@ -39,6 +41,7 @@ public class Schema extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Génération des données de test pour la base
 	 */
 	@SuppressWarnings("deprecation")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

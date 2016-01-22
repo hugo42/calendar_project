@@ -27,32 +27,50 @@ import calendar.dao.RepositoryManager;
 
 /**
  * Servlet implementation class FileUpload
+ * Traite l'upload de fichier sur le serveur
+ * Est mappée sur le path /fileupload et sert la vue update.jsp lorsque l'envoie de fichier est un succès
+ * L'anotation @MultipartConfig set la taille max d'un fichier à 100ko
  */
 @WebServlet(name = "fileupload", urlPatterns = { "/fileupload" } )
 @MultipartConfig(maxFileSize = 102400,maxRequestSize = 1048576,fileSizeThreshold = 10240)
 public class FileUpload extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	// Génération d'un logger, plus utile maintenant
 	private final static Logger LOGGER = Logger.getLogger(FileUpload.class.getCanonicalName());
 
+	/**
+	 * Redirige les requêtes GET vers la vue upload.jsp (vue de confirmation).
+	 */
 	public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
-        /* Affichage de la page d'envoi de fichiers */
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/upload.jsp").forward( request, response );
     }
 
+	/**
+	 * Redirige les requêtes POST vers la méthode processRequest() d'enregistrement de fichier.
+	 */
 	public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 		processRequest(request, response);
 	}
-    
-	protected void processRequest(HttpServletRequest request,
+   
+	/**
+	 * Gestion de concurrence d'accès grâce au synchronized
+	 * Traite l'upload de fichier vers l'application
+	 * Prépare le fichier avant son écritue
+	 * Remonte d'éventuelles erreurs lors de l'écriture du fichier au travers d'un writer
+	 * Flush l'entitymanager après les transactions
+	 * Et redirige vers la vue upload.jsp de confirmation
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected synchronized void processRequest(HttpServletRequest request,
 	        HttpServletResponse response)
 	        throws ServletException, IOException {
 	    response.setContentType("text/html;charset=UTF-8");
 
-	    // Create path components to save the file
-	    //final String abs_path = "/opt/tomcat/webapps/";
-	    //final String dyn_path = "\\WEB-INF\\uploads";
-	    //final String path = abs_path + dyn_path;
 	    final String path = "/opt/tomcat/webapps/CalendarProject/resources/images";
 	    final Part filePart = request.getPart("picture");
 	    final String fileName = getFileName(filePart);
@@ -98,11 +116,14 @@ public class FileUpload extends HttpServlet {
 		        EntityManager.flush();
 		        this.getServletContext().getRequestDispatcher("/main").forward( request, response );
 		    }
-	    }
-
-	    
+	    }	    
 	}
 
+	/**
+	 * Détermine le nom du fichier uploader
+	 * @param part
+	 * @return Le nom du fichier ou null si il y a eu problème lors de la récupération
+	 */
 	private String getFileName(final Part part) {
 	    final String partHeader = part.getHeader("content-disposition");
 	    LOGGER.log(Level.INFO, "Part Header = {0}", partHeader);
@@ -115,6 +136,17 @@ public class FileUpload extends HttpServlet {
 	    return null;
 	}
 	
+	/**
+	 * Génère un nouveau Purchase
+	 * Lui affecte l'id de l'utilisateur logger
+	 * Ainsi que l'id du fichier nouvellement uploadé
+	 * Et enfin l'id du jour concerné par l'achat
+	 * Gère aussi la déduction du coût de l'achat au solde de l'utilisateur
+	 * @param day
+	 * @param file
+	 * @param pGuest
+	 * @return
+	 */
 	private boolean purchase(Integer day, String file, Guest pGuest){
 		
 		Day pDay = RepositoryManager.getDayManager().find(day);

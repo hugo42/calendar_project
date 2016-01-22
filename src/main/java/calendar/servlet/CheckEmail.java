@@ -12,6 +12,8 @@ import calendar.dao.RepositoryManager;
 
 /**
  * Servlet implementation class CheckEmail
+ * Est mappée sur le path /check-email et ne sert pas de page
+ * Requêtée via Ajax pour tester si un utilisateur avec son email en base
  */
 @WebServlet("/check-email")
 public class CheckEmail extends HttpServlet {
