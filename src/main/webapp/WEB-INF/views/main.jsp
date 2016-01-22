@@ -23,7 +23,9 @@
 			    		<img class="img-responsive" src="${pageContext.request.contextPath}/${path[4]}/${path[5]}/${path[6]}"/>
 			    	</c:if>
 			    	<c:if test="${day.purchase.feature['class'].simpleName eq 'Diction'}">
-			    		<p>${day.purchase.feature.content }</p>
+			    		<blockquote class="text-center">
+			    			<p>${day.purchase.feature.content }</p>
+						</blockquote>
 			    	</c:if>
 			    	<p class="label align-bottom">${day.textDate}</p>
 			    </li>
