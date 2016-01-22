@@ -17,9 +17,13 @@
 			    		data-toggle="modal" data-target="#buyModal"
 			    	</c:if>
 			    >
-			    	<p class="label">${day.textDate}</p>
-			    	<c:if test="${not empty day.purchase}">
+			    	<c:if test="${day.purchase.feature['class'].simpleName eq 'Picture'}">
+			    		<img class="img-responsive" src="${day.purchase.feature.source }"/>
 			    	</c:if>
+			    	<c:if test="${day.purchase.feature['class'].simpleName eq 'Diction'}">
+			    		<p>${day.purchase.feature.content }</p>
+			    	</c:if>
+			    	<p class="label align-bottom">${day.textDate}</p>
 			    </li>
 			</c:forEach>
 		</ul>
