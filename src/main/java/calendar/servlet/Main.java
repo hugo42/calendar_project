@@ -15,6 +15,9 @@ import calendar.dao.RepositoryManager;
 
 /**
  * Servlet implementation class Main
+ * Charge l'ensemble des jours présent en base
+ * Accessible uniquement à un utilisateur connecté
+ * Mappée sur le path /main et sert la vue main.jsp
  */
 @WebServlet(name = "main", urlPatterns = { "/main" })
 public class Main extends HttpServlet {
@@ -29,7 +32,8 @@ public class Main extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Récupère l'ensemble des jours présents en base
+	 * Et les transmet à la vue main.jsp pour affichage
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -45,7 +49,7 @@ public class Main extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Redirige vers doGet()
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

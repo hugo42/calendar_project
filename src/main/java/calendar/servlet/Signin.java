@@ -14,6 +14,9 @@ import calendar.dao.RepositoryManager;
 
 /**
  * Servlet implementation class Signin
+ * Est mappée sur le path /signin 
+ * En POST log un utilisateur après test de présence en base
+ * En GET sert la vue signin.jsp
  */
 @WebServlet(name = "signin", urlPatterns = { "/signin" })
 public class Signin extends HttpServlet {
@@ -31,12 +34,14 @@ public class Signin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/views/signin.jsp" ).forward( request, response );
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Gére la sauvegarde de l'utilisateur en session en vue d'une connexion
+	 * Effectue au préalable un test sur le mail et le password
+	 * Et redirige sur la servlet main en cas de succes ou sur la vue error.jsp en cas d'erreur
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

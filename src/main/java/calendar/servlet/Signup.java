@@ -16,6 +16,9 @@ import calendar.dao.RepositoryManager;
 
 /**
  * Servlet implementation class Signup
+ * Est mappée sur le path /signup
+ * En GET sert la vue signup.jsp
+ * En POST créer un nouvel utilisateur en base
  */
 @WebServlet("/signup")
 public class Signup extends HttpServlet {
@@ -33,12 +36,15 @@ public class Signup extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/views/signup.jsp" ).forward( request, response );
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Gère la création d'un utilisateur en base
+	 * Effectue au préalable des tests sur les champs replis par l'utilisateur
+	 * Vérifie également que l'utilisateur n'existe pas déjà
+	 * Redirige sur la servlet main en cas de succces et vers la page error.jsp en cas d'erreur
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

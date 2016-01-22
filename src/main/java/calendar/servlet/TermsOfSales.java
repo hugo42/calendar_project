@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class TermsOfSales
+ * Est mappée sur le path /terms-of-sales et sert la vue termsOfSales.jsp
  */
 @WebServlet("/terms-of-sales")
 public class TermsOfSales extends HttpServlet {

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class Index
+ * Est mappée sur le path /index et sert la vue index.jsp
  */
 @WebServlet(name = "index", urlPatterns = { "/index"}, loadOnStartup = 0 )
 public class Index extends HttpServlet {
@@ -26,8 +27,6 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-//		session.setAttribute("stuff", "Allez n° "+session.getAttribute("guest_id")); %>
 		this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
 	}
 
