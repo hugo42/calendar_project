@@ -12,7 +12,11 @@
 	<jsp:body>
 		<ul id="days">
 			<c:forEach items="${days}" var="day">
-			    <li class="day" data-toggle="modal" data-target="#buyModal" data-day-id="${day.id}">
+			    <li class="day" data-day-id="${day.id}"
+			    	<c:if test="${empty day.purchase}">
+			    		data-toggle="modal" data-target="#buyModal"
+			    	</c:if>
+			    >
 			    	<p class="label">${day.textDate}</p>
 			    </li>
 			</c:forEach>
