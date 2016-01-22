@@ -10,11 +10,19 @@ import org.hibernate.cfg.Configuration;
 import calendar.business.Day;
 import calendar.business.Guest;
 
+/**
+ * Helper Hibernate pour les requetes de récupération des entités Day
+ */
 public class DayDao {
 
 	public DayDao(){
 	}
 	
+	/**
+	 * Récupère une entité Day en base par son id
+	 * @param Integer id
+	 * @return Day
+	 */
 	public Day find(Integer id){
 		
 		Day day = null;
@@ -26,7 +34,10 @@ public class DayDao {
 		return day;
 	}
 
-	
+	/**
+	 * Récupère toutes les entités Day en base
+	 * @return
+	 */
 	public List<Day> findAll(){
 		
 		List<Day> days = null;

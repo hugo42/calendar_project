@@ -6,11 +6,20 @@ import org.hibernate.SessionFactory;
 
 import calendar.business.Picture;
 
+/**
+ * Helper Hibernate pour les requetes de récupération des entités Picture
+ */
 public class PictureDao {
 
 	public PictureDao(){
 	}
 	
+	/**
+	 * /**
+	 * Récupère une entité Picture en base par son id
+	 * @param id
+	 * @return Picture
+	 */
 	public Picture find(Integer id){
 		
 		Picture picture = null;

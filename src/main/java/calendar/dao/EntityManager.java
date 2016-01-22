@@ -2,13 +2,21 @@ package calendar.dao;
 
 import org.hibernate.HibernateException;
 
+/**
+ * Centralise la récupération des helpers de gestion d'entité Hibernate
+ * Permet de persist une entité.
+ * Permet de commit la transaction hibernate en cours.
+ * Fait un rollback sur la transaction en cas d'erreur.
+ *
+ */
 public class EntityManager {
 
 	public EntityManager(){
 	}
 	
 	/**
-	 * Récupère la session en cours avec la transaction démarrée
+	 * Persist l'entité passée en paramètre dans la trasaction hibernate en cours
+	 * Fait un rollback sur la transaction en cas d'erreur.
 	 */
 	public static void persist(Object entity){
 		try{
@@ -20,10 +28,9 @@ public class EntityManager {
 	}
 
 	/**
-	 * Récupère la session en cours (la crée si elle n'existe pas)
-	 * Démarre une transaction si elle n'est pas déjà démarré
-	 * 
-	 * Commit les modifications de la transaction puis la termine
+	 * Commit les modifications peristées dans la transaction hibernate en cours
+	 * puis termine la session en cours
+	 * Fait un rollback sur la transaction en cas d'erreur.
 	 */
 	public static void flush(){
 		try{
@@ -35,6 +42,10 @@ public class EntityManager {
 		}
 	}
 	
+	/**
+	 * Annule la transactionhibernate en cours (rollback)
+	 * puis ferme la session hibernate en cours
+	 */
 	public static void rollback(){
 		HibernateFactory.getSession().getTransaction().rollback();
 		HibernateFactory.getSession().close();
