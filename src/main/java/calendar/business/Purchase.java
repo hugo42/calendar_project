@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+/**
+ * Entite Hibernate Purchase mappée en base
+ */
 @Entity
 public class Purchase {
 	

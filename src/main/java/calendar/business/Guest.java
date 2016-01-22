@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 
+/**
+ * Entité Hibernate Guest mappée en base
+ */
 @Entity
 public class Guest {
 	

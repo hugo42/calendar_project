@@ -3,6 +3,10 @@ package calendar.business;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+/**
+ * Entité Hibernate Picture mappée en base
+ * Etend Feature
+ */
 @Entity
 public class Picture extends Feature {
 

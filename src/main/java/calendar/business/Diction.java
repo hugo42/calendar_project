@@ -3,6 +3,10 @@ package calendar.business;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+/**
+ * Entité Hibernate Diction mappée en base
+ * Etend Feature
+ */
 @Entity
 public class Diction extends Feature {
 

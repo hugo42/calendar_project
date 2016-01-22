@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+/**
+ * Entité Hibernate Feature mappée en base
+ */
 @Entity
 public class Feature {
 
