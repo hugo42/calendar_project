@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <t:layout>
 	<jsp:attribute name="title">
@@ -18,7 +19,8 @@
 			    	</c:if>
 			    >
 			    	<c:if test="${day.purchase.feature['class'].simpleName eq 'Picture'}">
-			    		<img class="img-responsive" src="${day.purchase.feature.source }"/>
+			    		<c:set var="path" value="${fn:split(day.purchase.feature.source, 'ProjectCalendar/')[1]}" />
+			    		<img class="img-responsive" src="${path }"/>
 			    	</c:if>
 			    	<c:if test="${day.purchase.feature['class'].simpleName eq 'Diction'}">
 			    		<p>${day.purchase.feature.content }</p>
