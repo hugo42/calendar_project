@@ -18,7 +18,7 @@
 		<nav class="navbar navbar-default">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
-		      <a class="navbar-brand" href="#">CalendarProject</a>
+		      <a class="navbar-brand" href="index">CalendarProject</a>
 		    </div>
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<% if (session.getAttribute("guest") != null) { %>
