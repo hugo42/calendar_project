@@ -11,6 +11,9 @@
 		Janvier
 	</jsp:attribute>
 	<jsp:body>
+		<p id="errors">
+			${error}
+		</p>
 		<ul id="days">
 			<c:forEach items="${days}" var="day">
 			    <li class="day" data-day-id="${day.id}"
@@ -18,14 +21,15 @@
 			    		data-toggle="modal" data-target="#buyModal"
 			    	</c:if>
 			    >
+			    	<p class="label align-bottom">${day.textDate}</p>
+			    	<c:if test="${day.purchase.feature['class'].simpleName eq 'Diction'}">
+			    		<p class="diction">${day.purchase.feature.content }</p>
+			    	</c:if>
+			    	
 			    	<c:if test="${day.purchase.feature['class'].simpleName eq 'Picture'}">
 			    		<c:set var="path" value="${fn:split(day.purchase.feature.source, '/')}" />
 			    		<img class="img-responsive" src="${path[4]}/${path[5]}/${path[6]}"/>
 			    	</c:if>
-			    	<c:if test="${day.purchase.feature['class'].simpleName eq 'Diction'}">
-			    		<p class="sized-text">${day.purchase.feature.content }</p>
-			    	</c:if>
-			    	<p class="label align-bottom">${day.textDate}</p>
 			    </li>
 			</c:forEach>
 		</ul>
@@ -39,9 +43,9 @@
 					<div class="modal-body">
 						<div class="form-group">
 							<select id="choiceForm" class="form-control">
-							  <option value="0"></option>
-							  <option value="1">Dicton</option>
-							  <option value="2">Image</option>
+							  <option value="0">Choisissez une option...</option>
+							  <option value="1">Dicton (2€)</option>
+							  <option value="2">Image (5€)</option>
 							</select>
 		         		</div>
 		

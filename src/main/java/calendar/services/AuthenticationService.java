@@ -32,7 +32,7 @@ public class AuthenticationService {
 				
 				if(guest.getPassword().trim().equals(password.trim())){
 					session.setAttribute("guest", guest);
-					session.setMaxInactiveInterval(10*60);
+					session.setMaxInactiveInterval(100*60);
 				}else{
 					error = "Mot de passe incorrect...";
 				}

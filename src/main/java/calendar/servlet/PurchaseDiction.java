@@ -15,6 +15,8 @@ import calendar.business.Picture;
 import calendar.business.Purchase;
 import calendar.dao.EntityManager;
 import calendar.dao.RepositoryManager;
+import calendar.services.AuthenticationService;
+import calendar.services.PurchaseService;
 
 /**
  * Servlet implementation class PurchaseDiction
@@ -62,50 +64,20 @@ public class PurchaseDiction extends HttpServlet {
 	 * @throws ServletException 
 	 */
 	protected synchronized void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-		if( request.getParameter("diction") != null &&
-				request.getParameter("day") != null
-			){
+		
+		String error = PurchaseService.purchaseDiction(request.getParameter("diction"),
+				request.getParameter("day"),
+				request.getSession());
+	
+		if(error != null){
 			
-			Integer day = Integer.parseInt(request.getParameter("day"));
-			Day pDay = RepositoryManager.getDayManager().find(day);
-			
-			Guest pGuest = (Guest) request.getSession(true).getAttribute("guest");
-			if( pDay.getPurchase() == null){
-				
-				if(pGuest.getBalance() >= 2 ){
-
-					Diction diction= new Diction();
-					diction.setContent(request.getParameter("diction"));
-					
-					Purchase purchase = new Purchase();
-					purchase.setDay(pDay);
-					purchase.setFeature(diction);
-					purchase.setGuest(pGuest);
-					
-					pGuest.setBalance(pGuest.getBalance() - 2);
-					
-					EntityManager.persist(diction);
-					EntityManager.persist(purchase);
-					
-					EntityManager.flush();
-					response.setStatus(HttpServletResponse.SC_OK);
-				}else{
-					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-					request.setAttribute("errors", "Vous n'avez pas les moyens...");
-				}
-			}else{
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				request.setAttribute("errors", "Une erreur est survenue, veuillez réessayer plus tard...");
-			}
-		}else{
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			request.setAttribute("errors", "Une erreur est survenue, veuillez réessayer plus tard...");
-		}
-
-		if(response.getStatus() == HttpServletResponse.SC_OK){
-			response.sendRedirect("main");
-		}else{
+			request.setAttribute("error", error);
 			doGet(request, response);
+		}else{
+			
+			response.setStatus(HttpServletResponse.SC_OK);
+			response.sendRedirect("main");
 		}
 	}
 }
