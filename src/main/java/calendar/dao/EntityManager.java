@@ -20,7 +20,7 @@ public class EntityManager {
 	 */
 	public static void persist(Object entity){
 		try{
-			HibernateFactory.getSession().saveOrUpdate(entity);
+			HibernateFactory.getSession().save(entity);
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			EntityManager.rollback();
